@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="bicodes.fifa.footballapp">
+
+    <!-- Permissions required for network data and state checking -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="com.google.android.gms.permission.AD_ID" tools:node="replace" />
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@drawable/app_icon"
+        android:label="@string/app_name"
+        android:roundIcon="@drawable/app_icon"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.FootballApp">
+
+        <!-- Main entry point of the app -->
+        <activity
+            android:name=".ui.main.MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- Detailed match information screen -->
+        <activity
+            android:name=".ui.detail.MatchDetailActivity"
+            android:label="@string/match_detail_title"
+            android:parentActivityName=".ui.main.MainActivity" />
+
+        <!-- League standings screen -->
+        <activity
+            android:name=".ui.standings.StandingsActivity"
+            android:label="Standings"
+            android:parentActivityName=".ui.main.MainActivity" />
+
+    </application>
+
+</manifest>

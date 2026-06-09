@@ -1,0 +1,59 @@
+<resources>
+    <string name="app_name">Football App</string>
+
+    <!-- Navigation Tabs -->
+    <string name="menu_live">Live</string>
+    <string name="menu_past">Past</string>
+    <string name="menu_upcoming">Upcoming</string>
+    <string name="menu_tournaments">Tournaments</string>
+
+    <!-- Screen Titles -->
+    <string name="live_screen_title">Live Matches</string>
+    <string name="past_screen_title">Recent Results</string>
+    <string name="upcoming_screen_title">Upcoming Fixtures</string>
+    <string name="tournaments_screen_title">Tournaments</string>
+    <string name="standings_screen_title">%1$s Standings</string>
+    <string name="match_detail_title">Match Detail</string>
+
+    <!-- Empty States -->
+    <string name="no_live_matches">No live matches right now</string>
+    <string name="no_past_matches">No recent matches found</string>
+    <string name="no_upcoming_matches">No fixtures in the next 7 days</string>
+    <string name="no_tournaments_found">No active tournaments loaded</string>
+    <string name="no_standings_available">No standings available for this league</string>
+
+    <!-- Error Messages -->
+    <string name="error_network">Failed to connect to the server</string>
+    <string name="error_loading_data">Failed to load data. Showing cached results.</string>
+    <string name="error_match_not_found">Match detail not found</string>
+
+    <!-- UI Hints -->
+    <string name="pull_to_refresh">Pull down to refresh</string>
+    <string name="last_updated">Last updated: %1$s</string>
+    <string name="loading">Loading...</string>
+
+    <!-- Content Descriptions -->
+    <string name="league_logo_desc">League Logo</string>
+    <string name="home_team_badge_desc">Home Team Badge</string>
+    <string name="away_team_badge_desc">Away Team Badge</string>
+    <string name="event_icon_desc">Match Event Icon</string>
+
+    <!-- Match Info Labels -->
+    <string name="finished_status">FT</string>
+    <string name="upcoming_status">Fixture</string>
+    <string name="pos_label">Pos</string>
+    <string name="team_label">Team</string>
+    <string name="played_label">P</string>
+    <string name="won_label">W</string>
+    <string name="draw_label">D</string>
+    <string name="lost_label">L</string>
+    <string name="gd_label">GD</string>
+    <string name="pts_label">Pts</string>
+    <string name="match_events">MATCH EVENTS</string>
+    <string name="match_info">MATCH INFO</string>
+    <string name="score_format">%1$s - %2$s</string>
+    <string name="gd_format">%1$s%2$d</string>
+    <string name="referee_label">Referee: %1$s</string>
+    <string name="venue_label">Venue: %1$s</string>
+    <string name="country_label">Country: %1$s</string>
+</resources>

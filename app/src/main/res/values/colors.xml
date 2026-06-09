@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Core Palette (stays mostly same) -->
+    <color name="primary_green">#2E7D32</color>
+    <color name="primary_dark_green">#1B5E20</color>
+    <color name="primary_light_green">#60AD5E</color>
+    <color name="accent_green">#4CAF50</color>
+    <color name="accent_yellow">#FFC107</color>
+
+    <!-- Semantic Colors - Light -->
+    <color name="app_background">#F5F5F5</color>
+    <color name="card_background">#FFFFFF</color>
+    <color name="error_red">#D32F2F</color>
+
+    <!-- Text Colors - Light -->
+    <color name="text_primary">#212121</color>
+    <color name="text_secondary">#757575</color>
+    <color name="text_hint">#BDBDBD</color>
+    <color name="text_on_primary">#FFFFFF</color>
+
+    <!-- Constant Colors -->
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+
+    <!-- Compatibility (Redirects) -->
+    <color name="gray_background">@color/app_background</color>
+    <color name="background_light_gray">@color/app_background</color>
+    <color name="surface_white">@color/card_background</color>
+    <color name="text_white">@color/text_on_primary</color>
+</resources>
