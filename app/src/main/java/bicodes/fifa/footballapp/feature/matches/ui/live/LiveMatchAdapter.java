@@ -95,4 +95,8 @@ public class LiveMatchAdapter extends RecyclerView.Adapter<LiveMatchAdapter.Matc
             awayTeamName = itemView.findViewById(R.id.away_team_name);
             matchScore = itemView.findViewById(R.id.match_score);
             matchTime = itemView.findViewById(R.id.match_time);
-            matchStatus = item
+            matchStatus = itemView.findViewById(R.id.match_status);
+        }
+    }
+}
+

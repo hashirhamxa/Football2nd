@@ -20,7 +20,7 @@
 
         <!-- Main entry point of the app -->
         <activity
-            android:name=".ui.main.MainActivity"
+            android:name=".app.ui.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -30,15 +30,15 @@
 
         <!-- Detailed match information screen -->
         <activity
-            android:name=".ui.detail.MatchDetailActivity"
+            android:name=".feature.matches.ui.detail.MatchDetailActivity"
             android:label="@string/match_detail_title"
-            android:parentActivityName=".ui.main.MainActivity" />
+            android:parentActivityName=".app.ui.MainActivity" />
 
         <!-- League standings screen -->
         <activity
-            android:name=".ui.standings.StandingsActivity"
+            android:name=".feature.standings.ui.StandingsActivity"
             android:label="Standings"
-            android:parentActivityName=".ui.main.MainActivity" />
+            android:parentActivityName=".app.ui.MainActivity" />
 
     </application>
 

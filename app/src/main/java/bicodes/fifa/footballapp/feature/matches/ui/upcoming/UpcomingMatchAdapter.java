@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import bicodes.fifa.footballapp.R;
+import bicodes.fifa.footballapp.app.ui.OnMatchClickListener;
 import bicodes.fifa.footballapp.feature.matches.data.MatchEntity;
 import bicodes.fifa.footballapp.core.util.DateGroupUtils;
 import com.bumptech.glide.Glide;
