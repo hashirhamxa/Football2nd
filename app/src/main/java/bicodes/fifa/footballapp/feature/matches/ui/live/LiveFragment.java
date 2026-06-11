@@ -21,7 +21,7 @@ import bicodes.fifa.footballapp.R;
 import bicodes.fifa.footballapp.feature.matches.data.MatchEntity;
 import bicodes.fifa.footballapp.feature.matches.data.MatchRepository;
 import bicodes.fifa.footballapp.feature.matches.ui.live.LiveMatchAdapter;
-import bicodes.fifa.footballapp.feature.matches.ui.detail.MatchDetailActivity;
+import bicodes.fifa.footballapp.feature.matches.ui.detail.MatchDetailBottomSheet;
 
 import java.util.List;
 
@@ -55,9 +55,8 @@ public class LiveFragment extends Fragment {
         recyclerView.setAdapter(adapter);
 
         adapter.setOnMatchClickListener(match -> {
-            Intent intent = new Intent(requireContext(), MatchDetailActivity.class);
-            intent.putExtra("match_id", match.matchId);
-            startActivity(intent);
+            MatchDetailBottomSheet bottomSheet = MatchDetailBottomSheet.newInstance(match.matchId);
+            bottomSheet.show(getChildFragmentManager(), bottomSheet.getTag());
         });
 
         // Swipe to Refresh - No API call, just show spinner for 40s

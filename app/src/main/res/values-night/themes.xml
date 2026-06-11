@@ -2,13 +2,13 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.FootballApp" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Main colors -->
-        <item name="colorPrimary">@color/primary_green</item>
-        <item name="colorPrimaryVariant">@color/primary_dark_green</item>
+        <item name="colorPrimary">@color/primary_blue</item>
+        <item name="colorPrimaryVariant">@color/primary_dark_blue</item>
         <item name="colorOnPrimary">@color/text_on_primary</item>
 
         <!-- Secondary colors -->
-        <item name="colorSecondary">@color/accent_green</item>
-        <item name="colorSecondaryVariant">@color/primary_dark_green</item>
+        <item name="colorSecondary">@color/accent_cyan</item>
+        <item name="colorSecondaryVariant">@color/primary_dark_blue</item>
         <item name="colorOnSecondary">@color/text_on_primary</item>
 
         <!-- UI and Background -->
@@ -18,7 +18,7 @@
         <item name="colorError">@color/error_red</item>
 
         <!-- Status Bar -->
-        <item name="android:statusBarColor">@color/primary_dark_green</item>
+        <item name="android:statusBarColor">@color/primary_dark_blue</item>
         <item name="android:windowLightStatusBar">false</item>
 
         <!-- Typography -->

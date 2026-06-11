@@ -5,7 +5,7 @@ public class Config {
     public static final String BASE_URL = "https://apiv2.apifootball.com/";
     
     // Replace with your actual API key from apifootball.com
-    public static final String API_KEY = "2e804ef7d4fe7366f3cb9252664b6b977e776b293c2100dfb6f178ca38793ba4";
+    public static final String API_KEY = "519a4722282608af8cbc6c81f02f4e0f48bde851be65aa4a4987a706fe464225";
 
     // API Actions
     public static final String ACTION_GET_EVENTS = "get_events";

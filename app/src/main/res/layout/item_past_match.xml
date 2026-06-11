@@ -4,11 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginHorizontal="8dp"
-    android:layout_marginVertical="4dp"
+    android:layout_marginHorizontal="12dp"
+    android:layout_marginVertical="6dp"
     app:cardBackgroundColor="@color/card_background"
-    app:cardCornerRadius="12dp"
-    app:cardElevation="2dp"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="4dp"
     app:strokeWidth="0dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -33,7 +33,7 @@
             android:layout_marginStart="8dp"
             android:ellipsize="end"
             android:maxLines="1"
-            android:textColor="@color/primary_dark_green"
+            android:textColor="@color/primary_blue"
             android:textSize="12sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/league_logo"
@@ -46,9 +46,9 @@
             android:id="@+id/match_status_badge"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@android:color/darker_gray"
-            android:paddingHorizontal="6dp"
-            android:paddingVertical="2dp"
+            android:background="@drawable/bg_badge_past"
+            android:paddingHorizontal="8dp"
+            android:paddingVertical="4dp"
             android:text="FT"
             android:textColor="@color/text_on_primary"
             android:textSize="11sp"
@@ -117,7 +117,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:textColor="@android:color/darker_gray"
+                    android:textColor="@color/text_secondary"
                     android:textSize="12sp"
                     tools:text="2024-05-22" />
             </LinearLayout>

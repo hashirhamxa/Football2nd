@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Core Palette - Dark Mode Adjustments -->
-    <color name="primary_green">#388E3C</color>
-    <color name="primary_dark_green">#1B5E20</color>
-    <color name="accent_green">#81C784</color>
+    <color name="primary_blue">#3B82F6</color>
+    <color name="primary_dark_blue">#0F172A</color>
+    <color name="primary_light_blue">#60A5FA</color>
+    <color name="accent_cyan">#22D3EE</color>
+    <color name="accent_yellow">#FBBF24</color>
 
     <!-- Semantic Colors - Dark -->
-    <color name="app_background">#121212</color>
-    <color name="card_background">#1E1E1E</color>
+    <color name="app_background">#0B0F19</color>
+    <color name="card_background">#1E293B</color>
     <color name="error_red">#CF6679</color>
+    <color name="bottom_nav_indicator">#1E293B</color>
 
     <!-- Text Colors - Dark -->
     <color name="text_primary">#E1E1E1</color>

@@ -21,7 +21,7 @@ import android.content.Intent;
 import bicodes.fifa.footballapp.R;
 import bicodes.fifa.footballapp.feature.matches.data.MatchRepository;
 import bicodes.fifa.footballapp.feature.matches.ui.past.PastMatchAdapter;
-import bicodes.fifa.footballapp.feature.matches.ui.detail.MatchDetailActivity;
+import bicodes.fifa.footballapp.feature.matches.ui.detail.MatchDetailBottomSheet;
 import bicodes.fifa.footballapp.core.util.DateGroupUtils;
 
 import java.text.SimpleDateFormat;
@@ -59,9 +59,8 @@ public class PastFragment extends Fragment {
         recyclerView.setAdapter(adapter);
 
         adapter.setOnMatchClickListener(match -> {
-            Intent intent = new Intent(requireContext(), MatchDetailActivity.class);
-            intent.putExtra("match_id", match.matchId);
-            startActivity(intent);
+            MatchDetailBottomSheet bottomSheet = MatchDetailBottomSheet.newInstance(match.matchId);
+            bottomSheet.show(getChildFragmentManager(), bottomSheet.getTag());
         });
 
         // Swipe to Refresh - No API call, just show spinner for 40s
