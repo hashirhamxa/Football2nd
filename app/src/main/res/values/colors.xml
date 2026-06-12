@@ -19,6 +19,11 @@
     <color name="text_hint">#BDBDBD</color>
     <color name="text_on_primary">#FFFFFF</color>
 
+    <!-- Theme-aware UI accents -->
+    <color name="section_header_text">@color/primary_dark_blue</color>
+    <color name="accent_text">@color/primary_blue</color>
+    <color name="drag_handle">#94A3B8</color>
+
     <!-- Constant Colors -->
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>

@@ -1,9 +1,12 @@
 package bicodes.fifa.footballapp.feature.matches.ui.detail;
 
+import android.app.Dialog;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,6 +22,8 @@ import bicodes.fifa.footballapp.feature.matches.model.Match;
 import bicodes.fifa.footballapp.feature.matches.model.MatchEvent;
 import bicodes.fifa.footballapp.feature.matches.data.MatchRepository;
 import com.bumptech.glide.Glide;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
@@ -49,12 +54,32 @@ public class MatchDetailBottomSheet extends BottomSheetDialogFragment {
     }
 
     @Override
+    public int getTheme() {
+        return R.style.Theme_FootballApp_BottomSheetDialog;
+    }
+
+    @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             matchId = getArguments().getString("match_id");
         }
         repository = new MatchRepository(requireContext());
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        Dialog dialog = getDialog();
+        if (dialog instanceof BottomSheetDialog) {
+            BottomSheetDialog bottomSheetDialog = (BottomSheetDialog) dialog;
+            FrameLayout bottomSheet = bottomSheetDialog.findViewById(
+                    com.google.android.material.R.id.design_bottom_sheet);
+            if (bottomSheet != null) {
+                bottomSheet.setBackgroundColor(Color.TRANSPARENT);
+                BottomSheetBehavior.from(bottomSheet).setState(BottomSheetBehavior.STATE_EXPANDED);
+            }
+        }
     }
 
     @Nullable

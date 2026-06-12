@@ -14,8 +14,13 @@
     <color name="bottom_nav_indicator">#1E293B</color>
 
     <!-- Text Colors - Dark -->
-    <color name="text_primary">#E1E1E1</color>
-    <color name="text_secondary">#B0B0B0</color>
-    <color name="text_hint">#757575</color>
+    <color name="text_primary">#F1F5F9</color>
+    <color name="text_secondary">#94A3B8</color>
+    <color name="text_hint">#64748B</color>
     <color name="text_on_primary">#FFFFFF</color>
+
+    <!-- Theme-aware UI accents -->
+    <color name="section_header_text">@color/primary_light_blue</color>
+    <color name="accent_text">@color/primary_light_blue</color>
+    <color name="drag_handle">#64748B</color>
 </resources>

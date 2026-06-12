@@ -31,5 +31,16 @@
     <!-- Detail Screen Toolbar Style -->
     <style name="ThemeOverlay.FootballApp.Toolbar" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
         <item name="colorControlNormal">@color/white</item>
+        <item name="android:textColorPrimary">@color/text_on_primary</item>
+    </style>
+
+    <!-- Bottom Sheet -->
+    <style name="Theme.FootballApp.BottomSheetDialog" parent="Theme.MaterialComponents.DayNight.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/Widget.FootballApp.BottomSheet</item>
+        <item name="android:navigationBarColor">@color/app_background</item>
+    </style>
+
+    <style name="Widget.FootballApp.BottomSheet" parent="Widget.MaterialComponents.BottomSheet.Modal">
+        <item name="backgroundTint">@android:color/transparent</item>
     </style>
 </resources>
