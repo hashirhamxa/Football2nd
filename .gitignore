@@ -13,3 +13,9 @@
 .externalNativeBuild
 .cxx
 local.properties
+
+# Build releases and keystore directories
+/app/release/
+/football/
+/football.zip
+

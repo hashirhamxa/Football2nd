@@ -10,8 +10,8 @@ android {
         applicationId = "livefootball.footballstreamning.fifaworldcup"
         minSdk = 23
         targetSdk = 36
-        versionCode = 3
-        versionName = "1.3"
+        versionCode = 1
+        versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
