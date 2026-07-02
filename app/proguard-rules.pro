@@ -10,8 +10,8 @@
 -keep class * extends androidx.room.RoomDatabase {
     <init>();
 }
--keep class bicodes.fifa.footballapp.data.** { *; }
--keep interface bicodes.fifa.footballapp.data.** { *; }
+-keep class livefootball.footballstreamning.fifaworldcup.data.** { *; }
+-keep interface livefootball.footballstreamning.fifaworldcup.data.** { *; }
 -dontwarn androidx.room.**
 
 # Retrofit 2
@@ -19,7 +19,7 @@
 -keep class retrofit2.** { *; }
 -keepattributes RuntimeVisibleAnnotations, RuntimeVisibleParameterAnnotations
 -keepattributes RuntimeInvisibleAnnotations, RuntimeInvisibleParameterAnnotations
--keep interface bicodes.fifa.footballapp.api.** { *; }
+-keep interface livefootball.footballstreamning.fifaworldcup.api.** { *; }
 
 # OkHttp 3 / Okio
 -dontwarn okhttp3.**
@@ -29,8 +29,8 @@
 
 # Gson
 -keep class com.google.gson.** { *; }
--keep class bicodes.fifa.footballapp.model.** { *; }
--keepclassmembers class bicodes.fifa.footballapp.model.** {
+-keep class livefootball.footballstreamning.fifaworldcup.model.** { *; }
+-keepclassmembers class livefootball.footballstreamning.fifaworldcup.model.** {
     <fields>;
 }
 -keep class com.google.gson.reflect.TypeToken
@@ -54,4 +54,4 @@
 }
 
 # Keep your UI classes (Activities, Fragments)
--keep class bicodes.fifa.footballapp.ui.** { *; }
+-keep class livefootball.footballstreamning.fifaworldcup.ui.** { *; }

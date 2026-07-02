@@ -1,4 +1,4 @@
-# Football App
+# Football Arena
 
 A live football scores and results Android application, built with Java, Retrofit, Room, and Glide.
 
@@ -25,7 +25,7 @@ A live football scores and results Android application, built with Java, Retrofi
 ## Package Structure
 
 ```
-bicodes.fifa.footballapp
+livefootball.footballstreamning.fifaworldcup
 ├── api/                  # Retrofit service interfaces and client setup
 ├── data/                 # Room database, DAOs, and entity classes
 ├── model/                # Plain data model classes (JSON-mapped)

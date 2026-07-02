@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Football App</string>
+    <string name="app_name">Football Arena</string>
 
     <!-- Navigation Tabs -->
     <string name="menu_live">Live</string>
@@ -56,4 +56,16 @@
     <string name="referee_label">Referee: %1$s</string>
     <string name="venue_label">Venue: %1$s</string>
     <string name="country_label">Country: %1$s</string>
+
+    <!-- Privacy Policy -->
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="privacy_policy_url">https://doc-hosting.flycricket.io/football-arena-live-scores-privacy-policy/eaf664c1-ef61-4ccd-98cc-4010e9e15837/privacy</string>
+
+    <!-- Additional Menu Options -->
+    <string name="menu_share">Share</string>
+    <string name="menu_rate_us">Rate Us</string>
+    <string name="menu_more_apps">More Apps</string>
+    <string name="menu_about_us">About Us</string>
+    <string name="developer_id">Bicodes</string>
+    <string name="about_us_url">https://thebicodes.com</string>
 </resources>

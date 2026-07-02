@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace = "bicodes.fifa.footballapp"
+    namespace = "livefootball.footballstreamning.fifaworldcup"
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "bicodes.fifa.footballapp"
+        applicationId = "livefootball.footballstreamning.fifaworldcup"
         minSdk = 23
         targetSdk = 36
         versionCode = 3
