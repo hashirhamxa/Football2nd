@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -16,7 +17,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import livecricket.livecrickettv.cricketstreaming.viewmodels.ScoreViewModel
+import livefootball.footballstreamning.fifaworldcup.viewmodels.ScoreViewModel
 import livefootball.footballstreamning.fifaworldcup.R
 import livefootball.footballstreamning.fifaworldcup.activities.ScoreDetailActivity
 import livefootball.footballstreamning.fifaworldcup.adapters.MatchesAdapter
@@ -40,6 +41,7 @@ class CricketScoreFragment : Fragment() {
 
         val rvMatches = view.findViewById<RecyclerView>(R.id.recycler_matches)
         val swipeRefresh = view.findViewById<SwipeRefreshLayout>(R.id.swipe_refresh)
+        val textEmpty = view.findViewById<TextView>(R.id.text_empty)
 
         swipeRefresh.setProgressBackgroundColorSchemeResource(R.color.surface)
         swipeRefresh.setColorSchemeResources(R.color.primary, R.color.secondary)
@@ -60,12 +62,16 @@ class CricketScoreFragment : Fragment() {
                             intent.putExtra("MATCH_ID", match.id)
                             startActivity(intent)
                         }
+                        textEmpty.visibility = if (matches.isEmpty() && !swipeRefresh.isRefreshing) View.VISIBLE else View.GONE
                     }
                 }
 
                 launch {
                     viewModel.isRefreshing.collectLatest { isRefreshing ->
                         swipeRefresh.isRefreshing = isRefreshing
+                        if (isRefreshing) {
+                            textEmpty.visibility = View.GONE
+                        }
                     }
                 }
             }

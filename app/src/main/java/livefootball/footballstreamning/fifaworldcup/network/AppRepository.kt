@@ -14,8 +14,8 @@ import livefootball.footballstreamning.fifaworldcup.database.StreamingEntity
 import livefootball.footballstreamning.fifaworldcup.database.StreamingWithTournaments
 import livefootball.footballstreamning.fifaworldcup.database.TournamentEntity
 import livefootball.footballstreamning.fifaworldcup.database.TournamentWithEvents
-import livefootball.footballstreamning.fifaworldcup.streaming.BuildConfig
-import livefootball.footballstreamning.fifaworldcup.streaming.database.*
+import livefootball.footballstreamning.fifaworldcup.BuildConfig
+import livefootball.footballstreamning.fifaworldcup.database.*
 import javax.inject.Inject
 import javax.inject.Singleton
 
