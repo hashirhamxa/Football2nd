@@ -117,7 +117,7 @@ class LiveFragment : Fragment() {
                                 sections.forEach { section ->
                                     when (section.sportType) {
                                         "cricket" -> {
-                                            setupSection(sectionCricket, "CRICKET")
+                                            setupSection(sectionCricket, "CRICKET", R.id.text_section_title_cricket)
                                             rvCricket.visibility = View.VISIBLE
                                             rvCricket.adapter = CategoryAdapter(section.items) { handleItemClick(it) }
                                             layoutMulti.addView(sectionCricket)
@@ -127,7 +127,7 @@ class LiveFragment : Fragment() {
                                             rvCricket.requestLayout()
                                         }
                                         "football" -> {
-                                            setupSection(sectionFootball, "FOOTBALL")
+                                            setupSection(sectionFootball, "FOOTBALL", R.id.text_section_title_football)
                                             rvFootball.visibility = View.VISIBLE
                                             rvFootball.adapter = CategoryAdapter(section.items) { handleItemClick(it) }
                                             layoutMulti.addView(sectionFootball)
@@ -136,7 +136,7 @@ class LiveFragment : Fragment() {
                                             rvFootball.requestLayout()
                                         }
                                         "other" -> {
-                                            setupSection(sectionTrending, "TRENDING NOW")
+                                            setupSection(sectionTrending, "TRENDING NOW", R.id.text_section_title_trending)
                                             rvTrending.visibility = View.VISIBLE
                                             rvTrending.adapter = CategoryAdapter(section.items) { handleItemClick(it) }
                                             layoutMulti.addView(sectionTrending)
@@ -158,9 +158,9 @@ class LiveFragment : Fragment() {
         setupStaticClickListeners(view)
     }
 
-    private fun setupSection(sectionView: View, title: String) {
+    private fun setupSection(sectionView: View, title: String, titleViewId: Int) {
         sectionView.visibility = View.VISIBLE
-        sectionView.findViewById<TextView>(R.id.text_section_title)?.text = title
+        sectionView.findViewById<TextView>(titleViewId)?.text = title
         sectionView.findViewById<View>(R.id.btn_see_all_cricket)?.setOnClickListener { 
             AdsHelper.getInstance(requireContext()).showAd_Mob_X_Inter_With_Time(requireActivity())
             openTournamentActivity(title) 

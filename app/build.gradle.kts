@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -7,6 +9,14 @@ plugins {
     alias(libs.plugins.crashlytics)
     alias(libs.plugins.perf)
 }
+
+val localProperties = Properties()
+val localPropertiesFile = rootProject.file("local.properties")
+if (localPropertiesFile.exists()) {
+    localProperties.load(localPropertiesFile.inputStream())
+}
+
+val apiToken = localProperties.getProperty("API_TOKEN") ?: "YOUR_API_TOKEN_HERE"
 
 android {
     namespace = "livefootball.footballstreamning.fifaworldcup"
@@ -20,6 +30,8 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField("String", "API_TOKEN", "\"$apiToken\"")
 
         javaCompileOptions {
             annotationProcessorOptions {
@@ -44,6 +56,9 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
+    kotlinOptions {
+        jvmTarget = "11"
+    }
     buildFeatures {
         buildConfig = true
         viewBinding = true
@@ -67,7 +82,7 @@ dependencies {
 
     // Image Loading
     implementation(libs.glide.lib)
-    annotationProcessor(libs.glide.compiler)
+    kapt(libs.glide.compiler)
 
     // Testing
     testImplementation(libs.junit)
@@ -82,20 +97,20 @@ dependencies {
 
     // Dependency Injection (Hilt)
     implementation(libs.hilt.android)
-    annotationProcessor(libs.hilt.compiler)
+    kapt(libs.hilt.compiler)
 
     // JSON Parsing (Gson)
     implementation(libs.gson)
 
     // Local Database (Room)
     implementation(libs.room.runtime)
-    annotationProcessor(libs.room.compiler)
+    kapt(libs.room.compiler)
     implementation(libs.room.common)
 
     // Background Tasks (WorkManager)
     implementation(libs.work.runtime)
     implementation(libs.hilt.work)
-    annotationProcessor(libs.hilt.work.compiler)
+    kapt(libs.hilt.work.compiler)
 
     // Shimmer
     implementation(libs.shimmer)

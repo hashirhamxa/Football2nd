@@ -18,7 +18,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import livefootball.footballstreamning.fifaworldcup.R
-import livefootball.footballstreamning.fifaworldcup.feature.matches.ui.detail.MatchDetailActivity
+import livefootball.footballstreamning.fifaworldcup.activities.ScoreDetailActivity
 import livefootball.footballstreamning.fifaworldcup.adapters.FootballScoreAdapter
 import livefootball.footballstreamning.fifaworldcup.ads.AdsHelper
 import livefootball.footballstreamning.fifaworldcup.viewmodels.FootballScoreViewModel
@@ -59,7 +59,7 @@ class FootballScoreFragment : Fragment() {
                     viewModel.matches.collectLatest { matches ->
                         rvMatches.adapter = FootballScoreAdapter(matches) { match ->
                             AdsHelper.getInstance(requireContext()).showAd_Mob_X_Inter_With_Time(requireActivity())
-                            val intent = Intent(context, MatchDetailActivity::class.java)
+                            val intent = Intent(context, ScoreDetailActivity::class.java)
                             intent.putExtra("match_id", match.matchId)
                             startActivity(intent)
                         }

@@ -42,6 +42,7 @@
                         android:background="@drawable/bg_section_indicator" />
 
                     <TextView
+                        android:id="@+id/text_section_title_cricket"
                         style="@style/TextAppearance.Cricket.HeadlineMedium"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -90,6 +91,7 @@
                         android:background="@drawable/bg_section_indicator" />
 
                     <TextView
+                        android:id="@+id/text_section_title_football"
                         style="@style/TextAppearance.Cricket.HeadlineMedium"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -138,6 +140,7 @@
                         android:background="@drawable/bg_section_indicator" />
 
                     <TextView
+                        android:id="@+id/text_section_title_trending"
                         style="@style/TextAppearance.Cricket.HeadlineMedium"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
