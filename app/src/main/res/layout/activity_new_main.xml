@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    tools:context=".activities.NewMainActivity">
+
+  <!-- Custom Top Panel (Static, outside Shimmer) -->
+  <androidx.constraintlayout.widget.ConstraintLayout
+      android:id="@+id/top_panel"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:background="@color/background"
+      android:paddingTop="@dimen/spacing_extra_large"
+      android:paddingBottom="@dimen/spacing_small"
+      app:layout_constraintTop_toTopOf="parent">
+
+    <ImageView
+        android:id="@+id/img_flag"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="@dimen/spacing_large"
+        android:contentDescription="@null"
+        android:src="@drawable/top_bar_sports"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/primary" />
+
+    <TextView
+        android:id="@+id/text_app_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_small"
+        android:text="@string/app_name"
+        android:textAllCaps="true"
+        android:fontFamily="@font/oswald_bold"
+        android:textColor="@color/primary"
+        android:textSize="24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/img_flag"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:alpha="0.2"
+        android:background="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+  </androidx.constraintlayout.widget.ConstraintLayout>
+
+  <androidx.viewpager2.widget.ViewPager2
+      android:id="@+id/view_pager"
+      android:layout_width="match_parent"
+      android:layout_height="0dp"
+      android:visibility="gone"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/top_panel" />
+
+  <com.google.android.material.card.MaterialCardView
+      android:id="@+id/card_bottom_navigation"
+      style="@style/Widget.Cricket.CardView"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_margin="@dimen/nav_card_margin"
+      android:visibility="gone"
+      app:cardCornerRadius="@dimen/card_corner_radius_large"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:strokeWidth="@dimen/card_stroke_width">
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        style="@style/Widget.Cricket.BottomNavigationView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:elevation="0dp"
+        app:labelVisibilityMode="labeled"
+        app:menu="@menu/bottom_nav_menu" />
+
+  </com.google.android.material.card.MaterialCardView>
+
+  <ProgressBar
+      android:id="@+id/main_progress_bar"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:visibility="gone"
+      android:indeterminateTint="@color/primary"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@id/top_panel" />
+
+  <!-- Shimmer (Now constrained BELOW the top panel) -->
+  <com.facebook.shimmer.ShimmerFrameLayout
+      android:id="@+id/shimmer_view_container"
+      android:layout_width="match_parent"
+      android:layout_height="0dp"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintTop_toBottomOf="@id/top_panel"
+      app:shimmer_auto_start="true"
+      app:shimmer_base_alpha="0.7"
+      app:shimmer_duration="1200">
+
+    <include layout="@layout/activity_main_shimmer" />
+
+  </com.facebook.shimmer.ShimmerFrameLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

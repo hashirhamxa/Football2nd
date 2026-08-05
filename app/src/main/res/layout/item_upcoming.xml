@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/Widget.Cricket.CardView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <!-- Series / Match Type Header -->
+        <TextView
+            android:id="@+id/text_series_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textSize="12sp"
+            android:textColor="?android:attr/textColorSecondary"
+            android:fontFamily="sans-serif-medium"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/text_upcoming_badge"
+            tools:text="IPL 2026 | T20" />
+
+        <!-- Upcoming Badge -->
+        <TextView
+            android:id="@+id/text_upcoming_badge"
+            style="@style/BadgeStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/badge_background"
+            android:backgroundTint="@color/status_upcoming"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="@string/badge_upcoming" />
+
+        <!-- Divider line -->
+        <View
+            android:id="@+id/header_divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="10dp"
+            android:background="?attr/colorSurfaceVariant"
+            app:layout_constraintTop_toBottomOf="@+id/text_upcoming_badge"/>
+
+        <!-- Team 1 Row -->
+        <LinearLayout
+            android:id="@+id/layout_team1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginTop="12dp"
+            app:layout_constraintTop_toBottomOf="@+id/header_divider">
+
+            <!-- Team indicator circle -->
+            <View
+                android:layout_width="8dp"
+                android:layout_height="8dp"
+                android:background="@drawable/badge_background"
+                android:backgroundTint="?attr/colorPrimary" />
+
+            <TextView
+                android:id="@+id/text_team1_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:textSize="15sp"
+                android:fontFamily="sans-serif-medium"
+                android:textColor="?attr/colorOnSurface"
+                tools:text="Team 1" />
+        </LinearLayout>
+
+        <!-- Team 2 Row -->
+        <LinearLayout
+            android:id="@+id/layout_team2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/layout_team1">
+
+            <!-- Team indicator circle -->
+            <View
+                android:layout_width="8dp"
+                android:layout_height="8dp"
+                android:background="@drawable/badge_background"
+                android:backgroundTint="?attr/colorSecondary" />
+
+            <TextView
+                android:id="@+id/text_team2_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:textSize="15sp"
+                android:fontFamily="sans-serif-medium"
+                android:textColor="?attr/colorOnSurface"
+                tools:text="Team 2" />
+        </LinearLayout>
+
+        <!-- Date / Time Row (Large highlighted display) -->
+        <TextView
+            android:id="@+id/text_date_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:textColor="?attr/colorPrimary"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            app:layout_constraintTop_toBottomOf="@+id/layout_team2"
+            tools:text="Tomorrow, 09:30 AM" />
+
+        <!-- Divider line -->
+        <View
+            android:id="@+id/footer_divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="10dp"
+            android:background="?attr/colorSurfaceVariant"
+            app:layout_constraintTop_toBottomOf="@+id/text_date_time"/>
+
+        <!-- Footer: Venue -->
+        <TextView
+            android:id="@+id/text_venue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:textSize="11sp"
+            android:textColor="?android:attr/textColorSecondary"
+            android:ellipsize="end"
+            android:maxLines="1"
+            app:layout_constraintTop_toBottomOf="@+id/footer_divider"
+            tools:text="📍 Melbourne Cricket Ground" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

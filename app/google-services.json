@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "502301610684",
+    "project_id": "football-arena-f17f4",
+    "storage_bucket": "football-arena-f17f4.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:502301610684:android:498ce58f32b2b1936ab6b9",
+        "android_client_info": {
+          "package_name": "livefootball.footballstreamning.fifaworldcup"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDiCZAei8emlWyaKEHFOcxNEh5_8cdgWQk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
