@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/Widget.Cricket.CardView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="12dp"
+    app:cardBackgroundColor="@color/surface">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/spacing_medium">
+
+        <!-- Series Header Placeholder -->
+        <View
+            android:id="@+id/shimmer_series"
+            android:layout_width="120dp"
+            android:layout_height="12dp"
+            android:alpha="0.3"
+            android:background="@drawable/grey_rect"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- Status Badge Placeholder -->
+        <View
+            android:layout_width="40dp"
+            android:layout_height="18dp"
+            android:alpha="0.3"
+            android:background="@drawable/grey_rect"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/shimmer_divider1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="12dp"
+            android:background="@color/surface_variant"
+            app:layout_constraintTop_toBottomOf="@+id/shimmer_series" />
+
+        <!-- Team 1 Row -->
+        <View
+            android:id="@+id/shimmer_team1_dot"
+            android:layout_width="6dp"
+            android:layout_height="6dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/badge_background"
+            android:backgroundTint="@color/surface_variant"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/shimmer_divider1" />
+
+        <View
+            android:id="@+id/shimmer_team1_name"
+            android:layout_width="100dp"
+            android:layout_height="14dp"
+            android:layout_marginStart="12dp"
+            android:alpha="0.3"
+            android:background="@drawable/grey_rect"
+            app:layout_constraintBottom_toBottomOf="@id/shimmer_team1_dot"
+            app:layout_constraintStart_toEndOf="@id/shimmer_team1_dot"
+            app:layout_constraintTop_toTopOf="@id/shimmer_team1_dot" />
+
+        <View
+            android:layout_width="70dp"
+            android:layout_height="18dp"
+            android:alpha="0.3"
+            android:background="@drawable/grey_rect"
+            app:layout_constraintBottom_toBottomOf="@id/shimmer_team1_name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/shimmer_team1_name" />
+
+        <!-- Team 2 Row -->
+        <View
+            android:id="@+id/shimmer_team2_dot"
+            android:layout_width="6dp"
+            android:layout_height="6dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/badge_background"
+            android:backgroundTint="@color/surface_variant"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/shimmer_team1_dot" />
+
+        <View
+            android:id="@+id/shimmer_team2_name"
+            android:layout_width="80dp"
+            android:layout_height="14dp"
+            android:layout_marginStart="12dp"
+            android:alpha="0.3"
+            android:background="@drawable/grey_rect"
+            app:layout_constraintBottom_toBottomOf="@id/shimmer_team2_dot"
+            app:layout_constraintStart_toEndOf="@id/shimmer_team2_dot"
+            app:layout_constraintTop_toTopOf="@id/shimmer_team2_dot" />
+
+        <View
+            android:layout_width="60dp"
+            android:layout_height="18dp"
+            android:alpha="0.3"
+            android:background="@drawable/grey_rect"
+            app:layout_constraintBottom_toBottomOf="@id/shimmer_team2_name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/shimmer_team2_name" />
+
+        <!-- Status Placeholder -->
+        <View
+            android:id="@+id/shimmer_status"
+            android:layout_width="180dp"
+            android:layout_height="10dp"
+            android:layout_marginTop="16dp"
+            android:alpha="0.2"
+            android:background="@drawable/grey_rect"
+            app:layout_constraintTop_toBottomOf="@+id/shimmer_team2_dot"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <View
+            android:id="@+id/shimmer_divider2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="12dp"
+            android:background="@color/surface_variant"
+            app:layout_constraintTop_toBottomOf="@+id/shimmer_status" />
+
+        <!-- Footer Placeholder -->
+        <View
+            android:layout_width="140dp"
+            android:layout_height="10dp"
+            android:layout_marginTop="12dp"
+            android:alpha="0.2"
+            android:background="@drawable/grey_rect"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/shimmer_divider2" />
+
+        <View
+            android:layout_width="80dp"
+            android:layout_height="10dp"
+            android:layout_marginTop="12dp"
+            android:alpha="0.2"
+            android:background="@drawable/grey_rect"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/shimmer_divider2" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

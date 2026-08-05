@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/menu_live"
-        android:icon="@android:drawable/ic_menu_myplaces"
+        android:id="@+id/navigation_score"
+        android:icon="@drawable/bottom_nav_score_icon"
+        android:title="Score" />
+    <item
+        android:id="@+id/navigation_home"
+        android:icon="@drawable/bottom_nav_live_icon"
         android:title="Live" />
     <item
-        android:id="@+id/menu_past"
-        android:icon="@android:drawable/ic_menu_recent_history"
-        android:title="Past" />
+        android:id="@+id/navigation_highlights"
+        android:icon="@drawable/bottom_nav_highlight_icon"
+        android:title="Highlights" />
     <item
-        android:id="@+id/menu_upcoming"
-        android:icon="@android:drawable/ic_menu_day"
-        android:title="Upcoming" />
-    <item
-        android:id="@+id/menu_tournaments"
-        android:icon="@android:drawable/ic_menu_agenda"
-        android:title="Tournaments" />
+        android:id="@+id/navigation_settings"
+        android:icon="@drawable/bottom_nav_setting_icon"
+        android:title="Settings" />
 </menu>

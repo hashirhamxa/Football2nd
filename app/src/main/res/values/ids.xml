@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="ad_headline" type="id" />
+    <item name="ad_app_icon" type="id" />
+    <item name="ad_call_to_action" type="id" />
+</resources>

@@ -24,3 +24,6 @@ dependencyResolutionManagement {
 
 rootProject.name = "Football Arena"
 include(":app")
+include(":baseplayerview")
+include(":file-chooser")
+include(":newjustplayer")

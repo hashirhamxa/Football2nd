@@ -1,0 +1,92 @@
+apply plugin: 'com.android.library'
+
+def vCode = 140
+def vName = "0.${vCode}"
+
+base {
+    archivesName = "Just.Player.v${vName}"
+}
+
+android {
+    namespace 'com.brouken.player'
+    compileSdkVersion 34
+    ndkVersion '21.4.7075529'
+
+    defaultConfig {
+        minSdkVersion 21
+        targetSdkVersion 34
+        versionCode vCode
+        versionName vName
+        multiDexEnabled true
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            //proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    lint {
+        disable 'MissingTranslation'
+        disable 'UnsafeOptInUsageError'
+    }
+
+    buildFeatures {
+        buildConfig = true
+    }
+}
+
+dependencies {
+        def media3_version = '1.0.0-rc02'
+//    def media3_version = '1.4.0'
+    implementation "androidx.media3:media3-session:$media3_version"
+    implementation "androidx.media3:media3-datasource:$media3_version"
+    implementation "androidx.media3:media3-decoder:$media3_version"
+    implementation "androidx.media3:media3-common:$media3_version"
+    implementation("androidx.media3:media3-exoplayer-dash:$media3_version") {
+        exclude group: "androidx.media3", module: "media3-exoplayer"
+    }
+    implementation("androidx.media3:media3-exoplayer-hls:$media3_version") {
+        exclude group: "androidx.media3", module: "media3-exoplayer"
+    }
+    implementation("androidx.media3:media3-exoplayer-smoothstreaming:$media3_version") {
+        exclude group: "androidx.media3", module: "media3-exoplayer"
+    }
+    implementation("androidx.media3:media3-exoplayer-rtsp:$media3_version") {
+        exclude group: "androidx.media3", module: "media3-exoplayer"
+    }
+//    implementation "androidx.media3:media3-common:$media3_version"  // Adjust the version as needed
+
+
+
+    implementation 'com.getkeepsafe.taptargetview:taptargetview:1.13.3'
+    implementation 'com.google.android.material:material:1.8.0'
+    implementation 'androidx.coordinatorlayout:coordinatorlayout:1.2.0'
+//    implementation 'com.ibm.icu:icu4j:72.1'
+//    implementation 'com.arthenica:ffmpeg-kit-https:5.1.LTS'
+    implementation 'androidx.appcompat:appcompat:1.3.0'
+    implementation 'androidx.preference:preference:1.2.0'
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.5.1'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1'
+    implementation 'com.squareup.okhttp3:okhttp:4.10.0'
+    implementation project(path: ':baseplayerview')
+
+
+    implementation project(path: ':file-chooser')
+//    implementation fileTree(dir: 'libs', include: ['lib-*.aar'])
+    implementation name: 'lib-ui-release', ext: 'aar'
+    implementation name: 'lib-exoplayer-release', ext: 'aar'
+    implementation name: 'lib-extractor-release', ext: 'aar'
+    implementation name: 'lib-decoder-av1-release', ext: 'aar'
+    implementation name: 'lib-decoder-ffmpeg-release', ext: 'aar'
+
+
+    //leo ads
+    implementation 'com.google.android.gms:play-services-ads:23.5.0'
+
+
+}
