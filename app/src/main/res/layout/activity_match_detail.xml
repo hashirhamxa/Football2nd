@@ -75,13 +75,46 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
                     android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/img_home_logo"
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:scaleType="fitCenter"
+                            tools:src="@android:drawable/ic_menu_gallery" />
+
+                        <TextView
+                            style="@style/TextAppearance.Cricket.HeadlineSmall"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="16dp"
+                            android:text="VS"
+                            android:textColor="@color/secondary"
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:id="@+id/img_away_logo"
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:scaleType="fitCenter"
+                            tools:src="@android:drawable/ic_menu_gallery" />
+                    </LinearLayout>
 
                     <TextView
                         android:id="@+id/text_match_name"
                         style="@style/TextAppearance.Cricket.HeadlineLarge"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:gravity="center"
                         android:textColor="@color/white"
                         android:textSize="@dimen/text_size_headline_medium"
                         tools:text="Team A vs Team B" />
@@ -92,7 +125,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/spacing_small"
-                        android:text="LIVE" />
+                        android:text="LIVE"
+                        android:visibility="gone" />
 
                     <TextView
                         android:id="@+id/text_match_status"

@@ -60,10 +60,14 @@ object NetworkModule {
     @Provides
     @Singleton
     @Named("FootballRetrofit")
-    fun provideFootballRetrofit(okHttpClient: OkHttpClient): Retrofit {
+    fun provideFootballRetrofit(loggingInterceptor: HttpLoggingInterceptor): Retrofit {
+        val footballOkHttpClient = OkHttpClient.Builder()
+            .addInterceptor(loggingInterceptor)
+            .build()
+
         return Retrofit.Builder()
-            .baseUrl("https://apiv2.apifootball.com/")
-            .client(okHttpClient)
+            .baseUrl("https://v3.football.api-sports.io/")
+            .client(footballOkHttpClient)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }

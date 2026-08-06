@@ -60,7 +60,8 @@ class FootballScoreFragment : Fragment() {
                         rvMatches.adapter = FootballScoreAdapter(matches) { match ->
                             AdsHelper.getInstance(requireContext()).showAd_Mob_X_Inter_With_Time(requireActivity())
                             val intent = Intent(context, ScoreDetailActivity::class.java)
-                            intent.putExtra("match_id", match.matchId)
+                            intent.putExtra("MATCH_ID", match.matchId)
+                            intent.putExtra("IS_FOOTBALL", true)
                             startActivity(intent)
                         }
                         textEmpty.visibility = if (matches.isEmpty() && !swipeRefresh.isRefreshing) View.VISIBLE else View.GONE
