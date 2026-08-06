@@ -15,6 +15,12 @@ import kotlinx.coroutines.launch
 import livefootball.footballstreamning.fifaworldcup.R
 import livecricket.livecrickettv.cricketstreaming.viewmodels.ScoreDetailViewModel
 import livefootball.footballstreamning.fifaworldcup.adapters.ScoreLineAdapter
+import livefootball.footballstreamning.fifaworldcup.models.FootballMatchScoreModel
+import livefootball.footballstreamning.fifaworldcup.viewmodels.FootballScoreViewModel
+import android.view.View
+import android.widget.ProgressBar
+import com.bumptech.glide.Glide
+import android.widget.ImageView
 import livefootball.footballstreamning.fifaworldcup.database.MatchEntity
 import livefootball.footballstreamning.fifaworldcup.models.Inning
 import livefootball.footballstreamning.fifaworldcup.network.AppRepository
@@ -29,11 +35,14 @@ class ScoreDetailActivity : AppCompatActivity() {
 
     private val viewModel: ScoreDetailViewModel by viewModels()
 
+    private val footballViewModel: FootballScoreViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_match_detail)
 
         val matchId = intent.getStringExtra("MATCH_ID") ?: ""
+        val isFootball = intent.getBooleanExtra("IS_FOOTBALL", false)
 
         findViewById<ImageButton>(R.id.btn_back).setOnClickListener {
             AdsHelper.getInstance(this@ScoreDetailActivity).showAd_Mob_X_Inter_With_Time(this@ScoreDetailActivity)
@@ -42,16 +51,33 @@ class ScoreDetailActivity : AppCompatActivity() {
 
         val rvScores = findViewById<RecyclerView>(R.id.recycler_scores)
         rvScores.layoutManager = LinearLayoutManager(this)
+        val progressBar = findViewById<ProgressBar>(R.id.progress_bar)
 
-        lifecycleScope.launch {
-            viewModel.match.collect { match ->
-                match?.let { bindMatchData(it, rvScores) }
+        if (isFootball) {
+            lifecycleScope.launch {
+                footballViewModel.selectedMatch.collect { match ->
+                    match?.let { bindFootballMatchData(it) }
+                }
+            }
+            lifecycleScope.launch {
+                footballViewModel.isRefreshing.collect { isRefreshing ->
+                    progressBar.visibility = if (isRefreshing) View.VISIBLE else View.GONE
+                }
+            }
+            if (matchId.isNotEmpty()) {
+                footballViewModel.loadMatchDetail(matchId)
+            }
+        } else {
+            lifecycleScope.launch {
+                viewModel.match.collect { match ->
+                    match?.let { bindMatchData(it, rvScores) }
+                }
+            }
+            if (matchId.isNotEmpty()) {
+                viewModel.loadMatch(matchId)
             }
         }
-
-        if (matchId.isNotEmpty()) {
-            viewModel.loadMatch(matchId)
-        }
+        
         loadAds()
     }
 
@@ -80,10 +106,64 @@ class ScoreDetailActivity : AppCompatActivity() {
         super.onBackPressed()
     }
 
+    private fun bindFootballMatchData(match: FootballMatchScoreModel) {
+        findViewById<TextView>(R.id.text_match_name).text = "${match.homeTeamName} vs ${match.awayTeamName}"
+        findViewById<TextView>(R.id.text_match_status).text = match.matchStatus
+        
+        val homeLogo = findViewById<ImageView>(R.id.img_home_logo)
+        val awayLogo = findViewById<ImageView>(R.id.img_away_logo)
+
+        Glide.with(this)
+            .load(match.homeTeamBadge)
+            .placeholder(android.R.drawable.ic_menu_gallery)
+            .into(homeLogo)
+
+        Glide.with(this)
+            .load(match.awayTeamBadge)
+            .placeholder(android.R.drawable.ic_menu_gallery)
+            .into(awayLogo)
+
+        val statusBadge = findViewById<TextView>(R.id.text_status_badge)
+        if (match.isLive == "1") {
+            statusBadge.visibility = View.VISIBLE
+            statusBadge.text = "LIVE"
+        } else {
+            statusBadge.visibility = View.GONE
+        }
+
+        findViewById<TextView>(R.id.text_venue).text = "League: ${match.leagueName}"
+        findViewById<TextView>(R.id.text_date).text = "Date: ${match.matchDate}"
+        findViewById<TextView>(R.id.text_match_type).text = "Country: ${match.countryName}"
+
+        // Custom display for football score in the details
+        val scoreText = "Score: ${match.homeTeamScore} - ${match.awayTeamScore}"
+        findViewById<TextView>(R.id.text_match_status).append("\n$scoreText")
+    }
+
     private fun bindMatchData(match: MatchEntity, rv: RecyclerView) {
         findViewById<TextView>(R.id.text_match_name).text = "${match.team1} vs ${match.team2}"
         findViewById<TextView>(R.id.text_match_status).text = match.status
         
+        val homeLogo = findViewById<ImageView>(R.id.img_home_logo)
+        val awayLogo = findViewById<ImageView>(R.id.img_away_logo)
+
+        Glide.with(this)
+            .load(match.team1Img)
+            .placeholder(android.R.drawable.ic_menu_gallery)
+            .into(homeLogo)
+
+        Glide.with(this)
+            .load(match.team2Img)
+            .placeholder(android.R.drawable.ic_menu_gallery)
+            .into(awayLogo)
+
+        val statusBadge = findViewById<TextView>(R.id.text_status_badge)
+        if (match.status?.contains("Live", ignoreCase = true) == true) {
+            statusBadge.visibility = View.VISIBLE
+        } else {
+            statusBadge.visibility = View.GONE
+        }
+
         findViewById<TextView>(R.id.text_venue).text = "Venue: ${match.venue}"
         findViewById<TextView>(R.id.text_date).text = "Date: ${match.date}"
         findViewById<TextView>(R.id.text_match_type).text = "Type: ${match.matchType}"

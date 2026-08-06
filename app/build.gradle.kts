@@ -9,7 +9,6 @@ plugins {
     alias(libs.plugins.crashlytics)
     alias(libs.plugins.perf)
 }
-
 val localProperties = Properties()
 val localPropertiesFile = rootProject.file("local.properties")
 if (localPropertiesFile.exists()) {
@@ -19,6 +18,7 @@ if (localPropertiesFile.exists()) {
 val apiToken = localProperties.getProperty("API_TOKEN") ?: "YOUR_API_TOKEN_HERE"
 
 android {
+    //livecricket.livecrickettv.cricketstreaming
     namespace = "livefootball.footballstreamning.fifaworldcup"
     compileSdk = 36
 
