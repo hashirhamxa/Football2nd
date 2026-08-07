@@ -37,7 +37,7 @@
         android:layout_marginStart="@dimen/spacing_small"
         android:text="@string/app_name"
         android:textAllCaps="true"
-        android:fontFamily="@font/oswald_bold"
+        android:fontFamily="@font/archivo_narrow_bold"
         android:textColor="@color/primary"
         android:textSize="24dp"
         app:layout_constraintBottom_toBottomOf="parent"

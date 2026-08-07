@@ -2,10 +2,14 @@ package livefootball.footballstreamning.fifaworldcup.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.View
+import android.view.WindowManager
 import android.widget.ImageButton
 import android.widget.ImageView
+import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -19,21 +23,17 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import livefootball.footballstreamning.fifaworldcup.R
-import kotlin.random.Random
-
-import android.os.Handler
-import android.os.Looper
-import android.widget.RelativeLayout
 import livefootball.footballstreamning.fifaworldcup.adapters.Channel
 import livefootball.footballstreamning.fifaworldcup.adapters.ChannelAdapter
+import livefootball.footballstreamning.fifaworldcup.ads.AdsHelper
 import livefootball.footballstreamning.fifaworldcup.database.LinkEntity
 import livefootball.footballstreamning.fifaworldcup.network.AppRepository
-import livefootball.footballstreamning.fifaworldcup.ads.AdsHelper
 import livefootball.footballstreamning.fifaworldcup.newplayer.NewPlayerActivity
 import livefootball.footballstreamning.fifaworldcup.utilities.TimeUtils
 import livefootball.footballstreamning.fifaworldcup.utilities.Utils
 import livefootball.footballstreamning.fifaworldcup.viewmodels.LinksViewModel
 import javax.inject.Inject
+import kotlin.random.Random
 
 @AndroidEntryPoint
 class LinksActivity : AppCompatActivity() {
@@ -61,6 +61,10 @@ class LinksActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_links)
+        getWindow().setFlags(
+            WindowManager.LayoutParams.FLAG_SECURE,
+            WindowManager.LayoutParams.FLAG_SECURE
+        )
 
         val eventId = intent.getIntExtra("EVENT_ID", -1)
         val matchTitle = intent.getStringExtra("MATCH_TITLE") ?: "Match Details"

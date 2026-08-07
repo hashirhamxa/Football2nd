@@ -37,7 +37,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginStart="12dp"
                 android:layout_toEndOf="@id/indicator_cricket"
-                android:fontFamily="@font/oswald_regular"
+                android:fontFamily="@font/archivo_narrow_reg"
                 android:text="Settings"
                 android:textColor="@color/white"
                 android:textSize="24dp" />

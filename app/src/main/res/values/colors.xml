@@ -1,64 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Core Palette - Premium Navy & Cyan -->
-    <color name="primary_blue">#1E40AF</color>
-    <color name="primary_dark_blue">#0F172A</color>
-    <color name="primary_light_blue">#3B82F6</color>
-    <color name="accent_cyan">#06B6D4</color>
-    <color name="accent_yellow">#F59E0B</color>
 
-    <!-- Semantic Colors - Light -->
-    <color name="app_background">#F8FAFC</color>
-    <color name="card_background">#FFFFFF</color>
-    <color name="error_red">#D32F2F</color>
-    <color name="bottom_nav_indicator">#E0F2FE</color>
-
-    <!-- Text Colors - Light -->
-    <color name="text_primary">#212121</color>
-    <color name="text_secondary">#757575</color>
-    <color name="text_hint">#BDBDBD</color>
-    <color name="text_on_primary">#FFFFFF</color>
-
-    <!-- Theme-aware UI accents -->
-    <color name="section_header_text">@color/primary_dark_blue</color>
-    <color name="accent_text">@color/primary_blue</color>
-    <color name="drag_handle">#94A3B8</color>
-
-
-    <!-- Compatibility (Redirects) -->
-    <color name="gray_background">@color/app_background</color>
-    <color name="background_light_gray">@color/app_background</color>
-    <color name="surface_white">@color/card_background</color>
-    <color name="text_white">@color/text_on_primary</color>
-
-
-    <color name="primary">#FF5C00</color>
-    <color name="primary_variant">#CC4A00</color>
-    <color name="on_primary">#FFFFFF</color>
-    <color name="secondary">#00F0FF</color>
-    <color name="on_secondary">#000000</color>
-    <color name="tertiary">#00FF41</color>
-    <color name="neutral">#111317</color>
-    <color name="background">#111317</color>
-    <color name="on_background">#FFFFFF</color>
-    <color name="surface">#1A1C20</color>
-    <color name="on_surface">#FFFFFF</color>
-    <color name="surface_variant">#2D2F31</color>
+    <!-- Core Brand Colors (Matching Screenshot) -->
+    <color name="primary">#00F2FF</color> <!-- Neon Cyan -->
+    <color name="secondary">#00F2FF</color>
+    <color name="tertiary">#CCFF00</color> <!-- Bright Lime Green for LIVE -->
+    <color name="background">#0F1115</color> <!-- Premium Dark Navy/Black -->
+    <color name="surface">#1A1D24</color> <!-- Card Background -->
+    <color name="surface_variant">#242932</color>
 
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="active_indicator">#4DFF5C00</color>
+    <color name="gray_text">#94A3B8</color> <!-- Secondary Text -->
+    <color name="border_subtle">#334155</color> <!-- Subtle Border -->
+    <color name="active_indicator">#4D00F2FF</color>
 
-    <!-- Status Colors -->
-    <color name="status_finished">#4CAF50</color>
-    <color name="status_upcoming">#2196F3</color>
-    <color name="error">#F44336</color>
-
-
-
+    <!-- UI Controls (Player) -->
     <color name="ui_controls_background">#98000000</color>
     <color name="exo_bottom_bar_background" tools:keep="@color/exo_bottom_bar_background">@color/ui_controls_background</color>
     <color name="exo_black_opacity_70" tools:keep="@color/exo_black_opacity_70">@color/ui_controls_background</color>
     <color name="exo_styled_error_message_background" tools:keep="@color/exo_styled_error_message_background">@color/ui_controls_background</color>
-
 </resources>

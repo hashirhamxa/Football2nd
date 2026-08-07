@@ -9,6 +9,10 @@ data class HomeDisplayItem(
     val isLive: Boolean,
     val isTrending: Boolean = false,
     val startTime: String? = null,
+    val team1Name: String? = null,
+    val team1Image: String? = null,
+    val team2Name: String? = null,
+    val team2Image: String? = null,
     val originalObject: Any // Keep the original entity for navigation
 )
 

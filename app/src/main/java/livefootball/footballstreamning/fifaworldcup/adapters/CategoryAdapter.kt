@@ -13,7 +13,11 @@ import livefootball.footballstreamning.fifaworldcup.viewmodels.HomeDisplayItem
 import android.os.Handler
 import android.os.Looper
 import com.google.android.material.button.MaterialButton
-import livefootball.footballstreamning.fifaworldcup.utilities.TimeUtils
+import android.graphics.drawable.Drawable
+import com.bumptech.glide.load.DataSource
+import com.bumptech.glide.load.engine.GlideException
+import com.bumptech.glide.request.RequestListener
+import com.bumptech.glide.request.target.Target
 import livefootball.footballstreamning.fifaworldcup.utilities.Utils
 
 class CategoryAdapter(
@@ -61,14 +65,27 @@ class CategoryAdapter(
             }
             TrendingViewHolder(view)
         } else {
-            val view = inflater.inflate(R.layout.item_home_match, parent, false)
-            // Adjust width for vertical layout
+            // Use item_match for normal matches (Live Cricket/Football)
+            val view = inflater.inflate(R.layout.item_home_cricket, parent, false)
+            // Adjust width for vertical layout or horizontal carousels
+            val params = view.layoutParams ?: RecyclerView.LayoutParams(
+                if (isVertical) ViewGroup.LayoutParams.MATCH_PARENT else (parent.width * 0.85).toInt(),
+                ViewGroup.LayoutParams.WRAP_CONTENT
+            )
+            
             if (isVertical) {
-                val params = view.layoutParams as RecyclerView.LayoutParams
                 params.width = ViewGroup.LayoutParams.MATCH_PARENT
-                params.bottomMargin = view.context.resources.getDimensionPixelSize(R.dimen.spacing_large)
-                view.layoutParams = params
+                if (params is ViewGroup.MarginLayoutParams) {
+                    params.bottomMargin = view.context.resources.getDimensionPixelSize(R.dimen.spacing_medium)
+                }
+            } else {
+                // For horizontal, give it a fixed-ish width so multiple items are visible
+                params.width = view.context.resources.getDimensionPixelSize(R.dimen.nav_indicator_width) * 4 // approx 256dp
+                if (params is ViewGroup.MarginLayoutParams) {
+                    params.marginEnd = view.context.resources.getDimensionPixelSize(R.dimen.spacing_medium)
+                }
             }
+            view.layoutParams = params
             MatchViewHolder(view)
         }
     }
@@ -86,50 +103,114 @@ class CategoryAdapter(
     override fun getItemCount() = items.size
 
     inner class MatchViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        private val banner: ImageView = view.findViewById(R.id.img_match_banner)
-        private val title: TextView = view.findViewById(R.id.text_match_title)
-        private val tournament: TextView = view.findViewById(R.id.badge_tournament)
-        private val status: TextView = view.findViewById(R.id.text_match_status)
-        private val liveBadge: View = view.findViewById(R.id.badge_live)
-        private val liveDot: View? = view.findViewById(R.id.dot_live)
-        private val badgeText: TextView = view.findViewById(R.id.badge_live_text)
-        private val startingInText: TextView = view.findViewById(R.id.text_starting_in)
-        private val countdownText: TextView = view.findViewById(R.id.text_countdown)
+        // Shared
+        private val matchBg: ImageView? = view.findViewById(R.id.img_match_bg)
+        private val layoutTeams: View = view.findViewById(R.id.layout_teams)
+        private val matchStatus: TextView = view.findViewById(R.id.text_match_status)
+        private val statusBadgeText: TextView? = view.findViewById(R.id.text_status_badge_text)
+
+        // Cricket specific
+        private val seriesName: TextView? = view.findViewById(R.id.text_series_name)
+        private val team1Name: TextView? = view.findViewById(R.id.text_team1_name)
+        private val team1Image: ImageView? = view.findViewById(R.id.img_team1)
+        private val team1Code: TextView? = view.findViewById(R.id.text_team1_code)
+        private val team2Name: TextView? = view.findViewById(R.id.text_team2_name)
+        private val team2Image: ImageView? = view.findViewById(R.id.img_team2)
+        private val team2Code: TextView? = view.findViewById(R.id.text_team2_code)
+
+        // Football specific
+        private val leagueName: TextView? = view.findViewById(R.id.text_league_name)
+        private val homeName: TextView? = view.findViewById(R.id.text_home_name)
+        private val homeLogo: ImageView? = view.findViewById(R.id.img_home_logo)
+        private val homeCode: TextView? = view.findViewById(R.id.text_home_code)
+        private val awayName: TextView? = view.findViewById(R.id.text_away_name)
+        private val awayLogo: ImageView? = view.findViewById(R.id.img_away_logo)
+        private val awayCode: TextView? = view.findViewById(R.id.text_away_code)
 
         fun bind(item: HomeDisplayItem) {
-            title.text = item.title
-            tournament.text = item.subtitle
-            
-            val startDate = TimeUtils.parseUtcToLocal(item.startTime)
-            if (startDate != null && !TimeUtils.isEventLive(startDate)) {
-                // Event is Upcoming
-                liveBadge.visibility = View.GONE
+            seriesName?.text = item.subtitle ?: item.title
+            leagueName?.text = item.subtitle ?: item.title
+            statusBadgeText?.text = if (item.isLive) "LIVE" else "UPCOMING"
+            matchStatus.text = item.status
 
-                status.visibility = View.VISIBLE
-                status.text = item.status
+            val hasTeams = !item.team1Name.isNullOrEmpty() || !item.team2Name.isNullOrEmpty()
 
-                startingInText.visibility = View.VISIBLE
-                countdownText.text = TimeUtils.getCountdownString(startDate)
-                countdownText.visibility = View.VISIBLE
+            if (hasTeams) {
+                layoutTeams.visibility = View.VISIBLE
+                matchStatus.visibility = View.GONE
+                
+                // Cricket mapping
+                team1Name?.text = item.team1Name ?: ""
+                team2Name?.text = item.team2Name ?: ""
+                team1Code?.text = item.team1Name?.take(3)?.uppercase()
+                team2Code?.text = item.team2Name?.take(3)?.uppercase()
+
+                // Football mapping
+                homeName?.text = item.team1Name ?: ""
+                awayName?.text = item.team2Name ?: ""
+                homeCode?.text = item.team1Name?.take(3)?.uppercase()
+                awayCode?.text = item.team2Name?.take(3)?.uppercase()
+
+                val placeholder = R.drawable.bg_match_team_logo
+                
+                fun loadLogo(url: String?, imageView: ImageView?, codeView: TextView?) {
+                    if (imageView == null) return
+                    if (url.isNullOrEmpty() || url.contains("placeholder") || url.contains("default")) {
+                        imageView.visibility = View.GONE
+                        codeView?.visibility = View.VISIBLE
+                    } else {
+                        imageView.visibility = View.VISIBLE
+                        codeView?.visibility = View.GONE
+                        Glide.with(itemView.context)
+                            .load(url)
+                            .centerInside()
+                            .listener(object : RequestListener<Drawable> {
+                                override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable>, isFirstResource: Boolean): Boolean {
+                                    imageView.post {
+                                        imageView.visibility = View.GONE
+                                        codeView?.visibility = View.VISIBLE
+                                    }
+                                    return false
+                                }
+                                override fun onResourceReady(resource: Drawable, model: Any, target: Target<Drawable>?, dataSource: DataSource, isFirstResource: Boolean): Boolean {
+                                    return false
+                                }
+                            })
+                            .into(imageView)
+                    }
+                }
+
+                loadLogo(item.team1Image, team1Image, team1Code)
+                loadLogo(item.team2Image, team2Image, team2Code)
+                loadLogo(item.team1Image, homeLogo, homeCode)
+                loadLogo(item.team2Image, awayLogo, awayCode)
+
             } else {
-                // Event is Live
-                liveBadge.visibility = if (item.isLive) View.VISIBLE else View.GONE
-                status.visibility = View.VISIBLE
-                status.text = item.status
-                badgeText.text = "LIVE"
-                badgeText.setBackgroundResource(android.R.color.transparent)
-                liveBadge.setBackgroundResource(R.drawable.bg_badge_live)
-                
-                liveDot?.let { Utils.animateLiveDot(it) }
-                
-                startingInText.visibility = View.GONE
-                countdownText.visibility = View.GONE
+                layoutTeams.visibility = View.GONE
+                matchStatus.visibility = View.VISIBLE
+                matchStatus.text = item.title
             }
-            
-            Glide.with(itemView.context)
-                .load(item.imageUrl)
-                .placeholder(R.drawable.bg_section_indicator)
-                .into(banner)
+
+            // Background image
+            matchBg?.let {
+                Glide.with(itemView.context)
+                    .load(item.imageUrl)
+                    .placeholder(R.color.surface)
+                    .into(it)
+            }
+
+            val dotLive = itemView.findViewById<View>(R.id.dot_live_score) ?: itemView.findViewById<View>(R.id.dot_live)
+            if (item.isLive) {
+                dotLive?.let {
+                    it.visibility = View.VISIBLE
+                    Utils.animateLiveDot(it)
+                }
+            } else {
+                dotLive?.let {
+                    it.visibility = View.GONE
+                    it.clearAnimation()
+                }
+            }
         }
     }
 
@@ -138,8 +219,9 @@ class CategoryAdapter(
         private val title: TextView = view.findViewById(R.id.text_trending_title)
         private val category: TextView = view.findViewById(R.id.text_category)
         private val description: TextView = view.findViewById(R.id.text_trending_desc)
-        private val liveBadge: View? = view.findViewById(R.id.badge_live_trending)
-        private val liveDot: View? = view.findViewById(R.id.dot_live_trending)
+        private val liveIndicatorLayout: View = view.findViewById(R.id.layout_live_indicator)
+        private val liveBadge: TextView = view.findViewById(R.id.badge_live_trending)
+        private val liveDot: View = view.findViewById(R.id.dot_live_trending)
         private val btnWatch: MaterialButton? = view.findViewById(R.id.btn_watch_now)
         private val btnDetails: View? = view.findViewById(R.id.btn_details)
 
@@ -147,20 +229,20 @@ class CategoryAdapter(
             title.text = item.title
             category.text = item.subtitle
             description.text = item.status
-            
+
             if (item.isLive) {
-                liveBadge?.visibility = View.VISIBLE
-                liveDot?.let { Utils.animateLiveDot(it) }
+                liveIndicatorLayout.visibility = View.VISIBLE
+                liveDot.let { Utils.animateLiveDot(it) }
                 btnWatch?.text = "WATCH NOW"
             } else {
-                liveBadge?.visibility = View.GONE
-                liveDot?.clearAnimation()
+                liveIndicatorLayout.visibility = View.GONE
+                liveDot.clearAnimation()
                 btnWatch?.text = "WATCH"
             }
-            
+
             btnWatch?.setOnClickListener { onItemClick(item) }
             btnDetails?.setOnClickListener { onItemClick(item) }
-            
+
             Glide.with(itemView.context)
                 .load(item.imageUrl)
                 .placeholder(R.drawable.bg_section_indicator)

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Parallelogram ribbon badge.
+    BOTH the left and right edges are cut on the same diagonal, parallel to
+    each other, so the shape reads as a true parallelogram/flag rather than
+    a trapezoid with one straight side.
+
+    viewport: 140 x 36
+    - Skew amount: 16 (controls how aggressive the slant is)
+    - Top-left starts at x=16 (not x=0) so the left edge slants too
+    - Top-right is full width (140), bottom-right pulled in to 124 (140-16)
+    - Bottom-left is at x=0, so the left edge runs from (16,0) to (0,36)
+
+    Adjust the skew value (currently 16) to make the cut steeper or shallower —
+    just keep it consistent on both sides so the edges stay parallel.
+-->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="140dp"
+    android:height="36dp"
+    android:viewportWidth="140"
+    android:viewportHeight="36">
+
+    <path
+        android:fillColor="@color/primary"
+        android:pathData="M16,0 L140,0 L124,36 L0,36 Z" />
+
+</vector>

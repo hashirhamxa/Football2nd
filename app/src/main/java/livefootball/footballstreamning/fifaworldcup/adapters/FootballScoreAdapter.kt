@@ -17,7 +17,6 @@ class FootballScoreAdapter(
 ) : RecyclerView.Adapter<FootballScoreAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val leagueName: TextView = view.findViewById(R.id.text_league_name)
         val status: TextView = view.findViewById(R.id.text_match_status)
         val homeName: TextView = view.findViewById(R.id.text_home_name)
         val awayName: TextView = view.findViewById(R.id.text_away_name)
@@ -27,19 +26,18 @@ class FootballScoreAdapter(
         val awayLogo: ImageView = view.findViewById(R.id.img_away_logo)
         val matchTime: TextView = view.findViewById(R.id.text_match_time)
         val liveIndicator: View = view.findViewById(R.id.layout_live_indicator)
-        val liveDot: View = view.findViewById(R.id.dot_live)
+        val liveDot: View = view.findViewById(R.id.dot_live_score)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_football_score, parent, false)
+            .inflate(R.layout.item_score, parent, false)
         return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val match = matches[position]
         
-        holder.leagueName.text = match.leagueName
         holder.status.text = match.matchStatus
         holder.homeName.text = match.homeTeamName
         holder.awayName.text = match.awayTeamName
@@ -55,6 +53,10 @@ class FootballScoreAdapter(
             holder.liveIndicator.visibility = View.GONE
             holder.liveDot.clearAnimation()
         }
+
+        // Show logos for football
+        holder.homeLogo.visibility = View.VISIBLE
+        holder.awayLogo.visibility = View.VISIBLE
 
         Glide.with(holder.itemView.context)
             .load(match.homeTeamBadge)
