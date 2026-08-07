@@ -31,7 +31,7 @@
 
         <TextView
             android:id="@+id/text_category_title"
-            android:fontFamily="@font/oswald_bold"
+            android:fontFamily="@font/archivo_narrow_bold"
             android:textColor="@color/primary"
             android:textSize="20dp"
             android:layout_width="wrap_content"

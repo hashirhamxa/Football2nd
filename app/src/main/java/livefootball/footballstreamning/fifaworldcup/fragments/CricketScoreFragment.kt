@@ -17,11 +17,11 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import livefootball.footballstreamning.fifaworldcup.viewmodels.ScoreViewModel
 import livefootball.footballstreamning.fifaworldcup.R
 import livefootball.footballstreamning.fifaworldcup.activities.ScoreDetailActivity
-import livefootball.footballstreamning.fifaworldcup.adapters.MatchesAdapter
+import livefootball.footballstreamning.fifaworldcup.adapters.CricketScoreAdapter
 import livefootball.footballstreamning.fifaworldcup.ads.AdsHelper
+import livefootball.footballstreamning.fifaworldcup.viewmodels.ScoreViewModel
 
 @AndroidEntryPoint
 class CricketScoreFragment : Fragment() {
@@ -38,6 +38,7 @@ class CricketScoreFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
 
         val rvMatches = view.findViewById<RecyclerView>(R.id.recycler_matches)
         val swipeRefresh = view.findViewById<SwipeRefreshLayout>(R.id.swipe_refresh)
@@ -56,7 +57,7 @@ class CricketScoreFragment : Fragment() {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 launch {
                     viewModel.matches.collectLatest { matches ->
-                        rvMatches.adapter = MatchesAdapter(matches) { match ->
+                        rvMatches.adapter = CricketScoreAdapter(matches) { match ->
                             AdsHelper.getInstance(requireContext()).showAd_Mob_X_Inter_With_Time(requireActivity())
                             val intent = Intent(context, ScoreDetailActivity::class.java)
                             intent.putExtra("MATCH_ID", match.id)

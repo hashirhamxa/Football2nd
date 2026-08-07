@@ -50,7 +50,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
-                android:fontFamily="@font/oswald_regular"
+                android:fontFamily="@font/archivo_narrow_reg"
                 android:textSize="16dp"
                 android:textStyle="bold"
                 tools:text="PTV SPORTS HD" />
@@ -63,7 +63,7 @@
                 android:background="@drawable/bg_badge_quality"
                 android:paddingHorizontal="8dp"
                 android:paddingVertical="2dp"
-                android:fontFamily="@font/oswald_regular"
+                android:fontFamily="@font/archivo_narrow_reg"
                 android:textColor="@color/secondary"
                 android:textSize="10dp"
                 tools:text="ULTRA HD" />

@@ -2,6 +2,7 @@ package livecricket.livecrickettv.cricketstreaming.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.WindowManager
 import android.widget.ImageButton
 import android.widget.RelativeLayout
 import android.widget.TextView
@@ -21,10 +22,10 @@ import livefootball.footballstreamning.fifaworldcup.R
 import livefootball.footballstreamning.fifaworldcup.activities.EventActivity
 import livefootball.footballstreamning.fifaworldcup.activities.LinksActivity
 import livefootball.footballstreamning.fifaworldcup.adapters.CategoryAdapter
+import livefootball.footballstreamning.fifaworldcup.ads.AdsHelper
 import livefootball.footballstreamning.fifaworldcup.database.EventEntity
 import livefootball.footballstreamning.fifaworldcup.database.TournamentEntity
 import livefootball.footballstreamning.fifaworldcup.network.AppRepository
-import livefootball.footballstreamning.fifaworldcup.ads.AdsHelper
 import livefootball.footballstreamning.fifaworldcup.viewmodels.HomeDisplayItem
 import javax.inject.Inject
 
@@ -39,6 +40,10 @@ class TournamentActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tournament)
+        getWindow().setFlags(
+            WindowManager.LayoutParams.FLAG_SECURE,
+            WindowManager.LayoutParams.FLAG_SECURE
+        )
 
         val category = intent.getStringExtra("CATEGORY") ?: "CRICKET"
         val isHighlights = intent.getBooleanExtra("IS_HIGHLIGHTS_MODE", false)

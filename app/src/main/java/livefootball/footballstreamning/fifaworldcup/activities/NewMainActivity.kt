@@ -2,6 +2,7 @@ package livefootball.footballstreamning.fifaworldcup.activities
 
 import android.os.Bundle
 import android.view.View
+import android.view.WindowManager
 import android.widget.ProgressBar
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -22,7 +23,7 @@ import livefootball.footballstreamning.fifaworldcup.network.AppRepository
 import livefootball.footballstreamning.fifaworldcup.utilities.DialogManager
 import livefootball.footballstreamning.fifaworldcup.viewmodels.MainViewModel
 import javax.inject.Inject
-import kotlin.getValue
+
 @AndroidEntryPoint
 class NewMainActivity : AppCompatActivity() {
 
@@ -38,6 +39,10 @@ class NewMainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_new_main)
+//        getWindow().setFlags(
+//            WindowManager.LayoutParams.FLAG_SECURE,
+//            WindowManager.LayoutParams.FLAG_SECURE
+//        )
 
         viewPager = findViewById(R.id.view_pager)
         bottomNavigationView = findViewById(R.id.bottom_navigation)

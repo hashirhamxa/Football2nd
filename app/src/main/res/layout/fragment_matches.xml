@@ -42,7 +42,7 @@
                         android:layout_centerVertical="true"
                         android:layout_marginStart="12dp"
                         android:layout_toEndOf="@id/indicator_live"
-                        android:fontFamily="@font/oswald_regular"
+                        android:fontFamily="@font/archivo_narrow_reg"
                         android:text="Live Updates"
                         android:textColor="@color/white"
                         android:textSize="24dp" />
@@ -53,7 +53,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:nestedScrollingEnabled="false"
-                    tools:listitem="@layout/item_match" />
+                    tools:listitem="@layout/item_home_cricket" />
 
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>

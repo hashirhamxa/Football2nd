@@ -1,5 +1,6 @@
 package livefootball.footballstreamning.fifaworldcup.viewmodels
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -153,26 +154,32 @@ class HomeViewModel @Inject constructor(
             if (liveEvents.size == 1) {
                 // Promotion logic: Show event directly
                 val event = liveEvents[0]
-                HomeDisplayItem(
-                    id = event.id,
-                    title = event.eventName ?: "",
-                    subtitle = tWithE.tournament.name,
-                    status = event.description ?: "LIVE NOW",
-                    imageUrl = event.eventThumbUrl ?: tWithE.tournament.thumbUrl,
-                    isLive = true,
-                    isTrending = isTrending,
-                    startTime = event.startTime,
-                    originalObject = event
-                )
+                    HomeDisplayItem(
+                        id = event.id,
+                        title = event.eventName ?: "",
+                        subtitle = tWithE.tournament.name,
+                        status = event.description ?: if (event.isLive == true) "LIVE NOW" else "UPCOMING",
+                        imageUrl = event.eventThumbUrl ?: tWithE.tournament.thumbUrl,
+                        isLive = event.isLive == true,
+                        isTrending = isTrending,
+                        startTime = event.startTime,
+                        team1Name = event.teamAName,
+                        team1Image = event.teamAImage,
+                        team2Name = event.teamBName,
+                        team2Image = event.teamBUrl, // Mapping teamBUrl as image
+                        originalObject = event
+                    )
             } else if (liveEvents.size > 1) {
                 // Show Tournament group
+                // Check if any event is currently live
+                val hasLiveEvent = liveEvents.any { it.isLive == true }
                 HomeDisplayItem(
                     id = tWithE.tournament.id,
                     title = tWithE.tournament.name ?: "",
                     subtitle = tWithE.tournament.sportType,
-                    status = tWithE.tournament.description ?: "LIVE",
+                    status = tWithE.tournament.description ?: if (hasLiveEvent) "LIVE" else "UPCOMING",
                     imageUrl = tWithE.tournament.thumbUrl,
-                    isLive = true,
+                    isLive = hasLiveEvent,
                     isTrending = isTrending,
                     originalObject = tWithE.tournament
                 )

@@ -18,11 +18,11 @@ import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.suspendCancellableCoroutine
-import livefootball.footballstreamning.fifaworldcup.network.AppRepository
 import livefootball.footballstreamning.fifaworldcup.R
-import livefootball.footballstreamning.fifaworldcup.database.AdEntity
 import livefootball.footballstreamning.fifaworldcup.ads.AdsHelper
 import livefootball.footballstreamning.fifaworldcup.ads.AppOpenManager
+import livefootball.footballstreamning.fifaworldcup.database.AdEntity
+import livefootball.footballstreamning.fifaworldcup.network.AppRepository
 import livefootball.footballstreamning.fifaworldcup.utilities.CricketApp
 import livefootball.footballstreamning.fifaworldcup.utilities.DialogManager
 import livefootball.footballstreamning.fifaworldcup.utilities.SplashPreloader
@@ -41,6 +41,10 @@ class SplashActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        getWindow().setFlags(
+            WindowManager.LayoutParams.FLAG_SECURE,
+            WindowManager.LayoutParams.FLAG_SECURE
+        )
 
         WindowCompat.setDecorFitsSystemWindows(window, false)
         val controller = WindowInsetsControllerCompat(window, window.decorView)

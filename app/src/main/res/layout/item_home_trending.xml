@@ -1,156 +1,132 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+
+<livefootball.footballstreamning.fifaworldcup.utilities.ParallelogramCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    style="@style/Widget.Cricket.CardView"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginBottom="16dp"
-    app:cardCornerRadius="24dp"
-    app:strokeWidth="0dp">
+    android:id="@+id/trending_card"
+    android:layout_width="280dp"
+    android:layout_height="160dp"
+    android:layout_margin="8dp"
+    app:skewAmount="18dp"
+    app:cardCornerRadius="0dp"
+    app:cardStrokeColor="@color/primary"
+    app:cardStrokeWidth="1.5dp"
+    app:cardElevation="2dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="380dp">
+        android:layout_height="match_parent">
 
         <ImageView
             android:id="@+id/img_trending_banner"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:contentDescription="@null"
             android:scaleType="centerCrop"
             tools:src="@tools:sample/backgrounds/scenic" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/gradient_trending_card" />
+            android:background="@drawable/bg_gradient_overlay" />
 
-        <!-- Badges -->
-        <LinearLayout
+        <FrameLayout
+            android:id="@+id/layout_live_indicator"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
+            <ImageView
+                android:layout_width="64dp"
+                android:layout_height="24dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/bg_live_badge_angled" />
+
             <LinearLayout
-                android:id="@+id/badge_live_trending"
                 android:layout_width="wrap_content"
-                android:layout_height="23dp"
-                android:background="@drawable/bg_badge_live"
+                android:layout_height="24dp"
+                android:layout_gravity="center"
                 android:gravity="center_vertical"
-                android:paddingHorizontal="8dp"
-                android:paddingVertical="4dp">
+                android:orientation="horizontal"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp">
 
                 <View
                     android:id="@+id/dot_live_trending"
-                    android:layout_width="8dp"
-                    android:layout_height="8dp"
-                    android:layout_marginEnd="4dp"
-                    android:background="@drawable/live_dot" />
+                    android:layout_width="6dp"
+                    android:layout_height="6dp"
+                    android:layout_marginEnd="6dp"
+                    android:background="@drawable/ic_dot_green" />
 
                 <TextView
+                    android:id="@+id/badge_live_trending"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/jet_brains_mono_bold"
                     android:text="LIVE"
+                    android:fontFamily="@font/jet_brains_mono_bold"
                     android:textColor="@color/black"
-                    android:textSize="12dp" />
-
+                    android:textSize="11dp"/>
             </LinearLayout>
+        </FrameLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:background="@drawable/bg_badge_overlay"
-                android:fontFamily="@font/jet_brains_mono_regular"
-                android:paddingHorizontal="8dp"
-                android:paddingVertical="4dp"
-                android:textColor="@color/white"
-                android:textSize="12dp"
-                android:text="Trending" />
-
-        </LinearLayout>
-
-        <!-- Content -->
-        <LinearLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/text_trending_title"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="20dp"
-            app:layout_constraintBottom_toBottomOf="parent">
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:fontFamily="@font/inter_regular"
+            android:textAllCaps="true"
+            android:letterSpacing="0.02"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="SUPER 8 STAGE" />
 
+        <FrameLayout
+            android:id="@+id/ribbon_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginStart="16dp"
+            app:layout_constraintBottom_toTopOf="@id/text_trending_title"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <!--
+                No ImageView here anymore. text_category's background is
+                set at bind time to a ParallelogramRibbonDrawable, which
+                sizes itself to the TextView's actual measured bounds.
+            -->
             <TextView
                 android:id="@+id/text_category"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="32dp"
+                android:minWidth="60dp"
+                android:background="@drawable/bg_tournament_tag_ribbon"
+                android:gravity="center"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:textColor="@color/black"
+                android:textSize="12dp"
                 android:fontFamily="@font/jet_brains_mono_bold"
-                android:letterSpacing="0.1"
                 android:textAllCaps="true"
-                android:textColor="@color/secondary"
-                android:textSize="14dp"
-                tools:text="MIXED MARTIAL ARTS" />
+                android:letterSpacing="0.05"
+                tools:text="T20 WORLD CUP" />
+        </FrameLayout>
 
-            <TextView
-                android:id="@+id/text_trending_title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:fontFamily="@font/oswald_regular"
-                android:textColor="@color/white"
-                android:textSize="42dp"
-                tools:text="UFC 300" />
-
-            <TextView
-                android:id="@+id/text_trending_desc"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:alpha="0.8"
-                android:fontFamily="@font/inter_regular"
-                android:lineSpacingExtra="4dp"
-                android:textColor="@color/white"
-                android:textSize="14dp"
-                tools:text="Pereira vs. Hill - The historic triple-header championship event is underway. Stream the main card live." />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="24dp"
-                android:orientation="horizontal">
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btn_watch_now"
-                    android:layout_width="160dp"
-                    android:layout_height="56dp"
-                    android:layout_marginEnd="12dp"
-                    android:background="@drawable/rounded_rect_bck"
-                    android:fontFamily="@font/oswald_regular"
-                    android:text="WATCH NOW"
-                    android:textColor="@color/black"
-                    android:textSize="15dp"
-                    app:icon="@drawable/play_icon"
-                    app:iconTint="@color/black" />
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btn_details"
-                    style="@style/Widget.Cricket.Button.Outlined"
-                    android:layout_width="wrap_content"
-                    android:layout_height="56dp"
-                    android:fontFamily="@font/oswald_regular"
-                    android:paddingHorizontal="32dp"
-                    android:text="DETAILS"
-                    android:textColor="@color/primary"
-                    android:textSize="15dp" />
-
-            </LinearLayout>
-
-        </LinearLayout>
+        <!-- Existing hidden views for ID compatibility -->
+        <View android:id="@+id/bg_live_overlay" android:layout_width="1dp" android:layout_height="1dp" android:visibility="gone" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" />
+        <com.google.android.material.button.MaterialButton android:id="@+id/btn_watch_now" android:layout_width="1dp" android:layout_height="1dp" android:visibility="gone" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" />
+        <TextView android:id="@+id/text_trending_desc" android:layout_width="1dp" android:layout_height="1dp" android:visibility="gone" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" />
+        <View android:id="@+id/btn_details" android:layout_width="1dp" android:layout_height="1dp" android:visibility="gone" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-</com.google.android.material.card.MaterialCardView>
+</livefootball.footballstreamning.fifaworldcup.utilities.ParallelogramCardView>

@@ -13,19 +13,20 @@ import livefootball.footballstreamning.fifaworldcup.database.MatchEntity
 import livefootball.footballstreamning.fifaworldcup.models.Inning
 import livefootball.footballstreamning.fifaworldcup.utilities.Utils
 
-class MatchesAdapter(
+class CricketScoreAdapter(
     private val items: List<MatchEntity>,
     private val onMatchClick: (MatchEntity) -> Unit
-) : RecyclerView.Adapter<MatchesAdapter.ViewHolder>() {
+) : RecyclerView.Adapter<CricketScoreAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val series: TextView = view.findViewById(R.id.text_series_name)
-        val statusBadge: View = view.findViewById(R.id.text_status_badge)
+        val statusBadge: View = view.findViewById(R.id.text_match_status)
         val statusBadgeText: TextView = view.findViewById(R.id.text_status_badge_text)
-        val team1: TextView = view.findViewById(R.id.text_team1_name)
-        val team1Score: TextView = view.findViewById(R.id.text_team1_score)
-        val team2: TextView = view.findViewById(R.id.text_team2_name)
-        val team2Score: TextView = view.findViewById(R.id.text_team2_score)
+        val team1: TextView = view.findViewById(R.id.text_home_name)
+        val team1Score: TextView = view.findViewById(R.id.text_home_score)
+        val team2: TextView = view.findViewById(R.id.text_away_name)
+        val team2Score: TextView = view.findViewById(R.id.text_away_score)
+        val frameTeam1: View = view.findViewById(R.id.frame_home)
+        val frameTeam2: View = view.findViewById(R.id.frame_away)
         val status: TextView = view.findViewById(R.id.text_match_status)
         val venue: TextView = view.findViewById(R.id.text_venue)
         val lastUpdated: TextView = view.findViewById(R.id.text_last_updated)
@@ -33,17 +34,21 @@ class MatchesAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_match, parent, false)
+            .inflate(R.layout.item_score, parent, false)
         return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = items[position]
-        holder.series.text = "${item.name ?: ""} | ${item.matchType ?: ""}"
         holder.statusBadgeText.text = item.status
         holder.team1.text = item.team1
         holder.team2.text = item.team2
         holder.status.text = item.status
+
+        // Hide team images for cricket as data is not available
+        holder.frameTeam1.visibility = View.GONE
+        holder.frameTeam2.visibility = View.GONE
+
         holder.venue.text = "📍 ${item.venue ?: "Unknown Venue"}"
         
         if (item.status?.contains("Live", ignoreCase = true) == true) {

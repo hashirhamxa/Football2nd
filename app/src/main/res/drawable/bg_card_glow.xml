@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Layered rounded-rect glow, placed in a FrameLayout BEHIND the
+    MaterialCardView (see item_trending_card.xml) to fake a soft neon
+    outer glow, since Android doesn't support true CSS-style box-shadow blur.
+    Each layer is slightly larger and more transparent than the last.
+-->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:top="6dp" android:bottom="6dp" android:start="6dp" android:end="6dp">
+        <shape android:shape="rectangle">
+            <corners android:radius="14dp" />
+            <solid android:color="#1A4DE0FA" />
+        </shape>
+    </item>
+
+    <item android:top="3dp" android:bottom="3dp" android:start="3dp" android:end="3dp">
+        <shape android:shape="rectangle">
+            <corners android:radius="13dp" />
+            <solid android:color="#334DE0FA" />
+        </shape>
+    </item>
+
+</layer-list>

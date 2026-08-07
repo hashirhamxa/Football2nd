@@ -1,222 +1,204 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/swipe_refresh_home"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background">
 
-    <androidx.core.widget.NestedScrollView
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_refresh_home"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:clipToPadding="false"
-        android:paddingBottom="@dimen/fragment_bottom_padding">
+        android:layout_height="match_parent">
 
-        <LinearLayout
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp">
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:paddingBottom="100dp">
 
-            <!-- Multi-Section Layout (Horizontal Carousels) -->
-            <LinearLayout
-                android:id="@+id/layout_multi_sections"
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_height="wrap_content">
 
-                <!-- Cricket Section -->
-                <RelativeLayout
-                    android:id="@+id/section_cricket"
+                <!-- Multi-Section Layout (Default) -->
+                <LinearLayout
+                    android:id="@+id/layout_multi_sections"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
+                    android:orientation="vertical">
+
+                    <!-- Trending Section -->
+                    <RelativeLayout
+                        android:id="@+id/section_trending"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginTop="16dp">
+
+                        <ImageView
+                            android:id="@+id/ic_trending"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/trending_tittle_icon"
+                            app:tint="@color/primary" />
+
+                        <TextView
+                            android:id="@+id/text_section_title_trending"
+                            style="@style/SectionTitleStyle"
+                            android:layout_marginStart="8dp"
+                            android:layout_toEndOf="@id/ic_trending"
+                            android:layout_centerVertical="true"
+                            android:text="Trending Tournaments"
+                            android:textStyle="bold|italic" />
+
+                        <TextView
+                            android:id="@+id/btn_see_all_trending"
+                            style="@style/AllActionStyle"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:text="ALL >" />
+                    </RelativeLayout>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_trending"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:clipToPadding="false"
+                        android:orientation="horizontal"
+                        android:paddingHorizontal="8dp"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        tools:listitem="@layout/item_home_trending" />
+
+                    <!-- Cricket Section -->
+                    <RelativeLayout
+                        android:id="@+id/section_cricket"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginTop="32dp">
+
+                        <ImageView
+                            android:id="@+id/ic_cricket"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/cricket_tittle_icon"
+                            />
+
+                        <TextView
+                            android:id="@+id/text_section_title_cricket"
+                            style="@style/SectionTitleStyle"
+                            android:layout_marginStart="8dp"
+                            android:layout_toEndOf="@id/ic_cricket"
+                            android:layout_centerVertical="true"
+                            android:text="Live Cricket"
+                            android:textStyle="bold|italic" />
+
+                        <TextView
+                            android:id="@+id/btn_see_all_cricket"
+                            style="@style/AllActionStyle"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:text="ALL >" />
+                    </RelativeLayout>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_cricket"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:nestedScrollingEnabled="false"
+                        tools:listitem="@layout/item_home_cricket" />
+
+                    <!-- Football Section -->
+                    <RelativeLayout
+                        android:id="@+id/section_football"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginTop="32dp">
+
+                        <ImageView
+                            android:id="@+id/ic_football"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/football_tittle_icon"
+                            />
+
+                        <TextView
+                            android:id="@+id/text_section_title_football"
+                            style="@style/SectionTitleStyle"
+                            android:layout_marginStart="8dp"
+                            android:layout_toEndOf="@id/ic_football"
+                            android:layout_centerVertical="true"
+                            android:text="Live Football"
+                            android:textStyle="bold|italic" />
+
+                        <TextView
+                            android:id="@+id/btn_see_all_football"
+                            style="@style/AllActionStyle"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:text="ALL >" />
+                    </RelativeLayout>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_football"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:nestedScrollingEnabled="false"
+                        tools:listitem="@layout/item_home_football" />
+
+                </LinearLayout>
+
+                <!-- Single Section Layout -->
+                <LinearLayout
+                    android:id="@+id/layout_single_section"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp"
                     android:visibility="gone">
 
-                    <View
-                        android:id="@+id/indicator_cricket"
-                        android:layout_width="4dp"
-                        android:layout_height="24dp"
-                        android:layout_centerVertical="true"
-                        android:background="@drawable/bg_section_indicator" />
-
-                    <TextView
-                        android:id="@+id/text_section_title_cricket"
-                        style="@style/TextAppearance.Cricket.HeadlineMedium"
-                        android:layout_width="wrap_content"
+                    <RelativeLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginStart="12dp"
-                        android:layout_toEndOf="@id/indicator_cricket"
-                        android:fontFamily="@font/oswald_regular"
-                        android:text="CRICKET"
-                        android:textColor="@color/white"
-                        android:textSize="24dp" />
+                        android:layout_marginBottom="16dp">
 
-                    <TextView
-                        android:id="@+id/btn_see_all_cricket"
-                        android:layout_width="wrap_content"
+                        <View
+                            android:id="@+id/indicator_single"
+                            android:layout_width="4dp"
+                            android:layout_height="24dp"
+                            android:layout_centerVertical="true"
+                            android:background="@drawable/bg_section_indicator" />
+
+                        <TextView
+                            android:id="@+id/text_single_title"
+                            style="@style/SectionTitleStyle"
+                            android:layout_marginStart="12dp"
+                            android:layout_toEndOf="@id/indicator_single"
+                            android:layout_centerVertical="true"
+                            android:text="LIVE" />
+                    </RelativeLayout>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_single"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"
-                        android:text="SEE ALL >"
-                        android:fontFamily="@font/jet_brains_mono_regular"
-                        android:textColor="@color/secondary"
-                        android:textSize="14dp" />
-                </RelativeLayout>
+                        android:clipToPadding="false"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        tools:listitem="@layout/item_home_cricket" />
+                </LinearLayout>
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_cricket"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="24dp"
-                    android:clipToPadding="false"
-                    android:visibility="gone"
-                    tools:listitem="@layout/item_home_match" />
+            </FrameLayout>
 
-                <!-- Football Section -->
-                <RelativeLayout
-                    android:id="@+id/section_football"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
-                    android:visibility="gone">
+        </androidx.core.widget.NestedScrollView>
 
-                    <View
-                        android:id="@+id/indicator_football"
-                        android:layout_width="4dp"
-                        android:layout_height="24dp"
-                        android:layout_centerVertical="true"
-                        android:background="@drawable/bg_section_indicator" />
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
-                    <TextView
-                        android:id="@+id/text_section_title_football"
-                        style="@style/TextAppearance.Cricket.HeadlineMedium"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginStart="12dp"
-                        android:layout_toEndOf="@id/indicator_football"
-                        android:fontFamily="@font/oswald_regular"
-                        android:text="FOOTBALL"
-                        android:textColor="@color/white"
-                        android:textSize="24dp" />
-
-                    <TextView
-                        android:id="@+id/btn_see_all_football"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"
-                        android:text="SEE ALL >"
-                        android:fontFamily="@font/jet_brains_mono_regular"
-                        android:textColor="@color/secondary"
-                        android:textSize="14dp" />
-                </RelativeLayout>
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_football"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="24dp"
-                    android:clipToPadding="false"
-                    android:visibility="gone"
-                    tools:listitem="@layout/item_home_match" />
-
-                <!-- Trending Section -->
-                <RelativeLayout
-                    android:id="@+id/section_trending"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
-                    android:visibility="gone">
-
-                    <View
-                        android:id="@+id/indicator_trending"
-                        android:layout_width="4dp"
-                        android:layout_height="24dp"
-                        android:layout_centerVertical="true"
-                        android:background="@drawable/bg_section_indicator" />
-
-                    <TextView
-                        android:id="@+id/text_section_title_trending"
-                        style="@style/TextAppearance.Cricket.HeadlineMedium"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginStart="12dp"
-                        android:layout_toEndOf="@id/indicator_trending"
-                        android:fontFamily="@font/oswald_regular"
-                        android:text="TRENDING NOW"
-                        android:textColor="@color/white"
-                        android:textSize="24dp" />
-
-                    <TextView
-                        android:id="@+id/btn_see_all_trending"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"
-                        android:text="SEE ALL >"
-                        android:fontFamily="@font/jet_brains_mono_regular"
-                        android:textColor="@color/secondary"
-                        android:textSize="14dp" />
-                </RelativeLayout>
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_trending"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:clipToPadding="false"
-                    android:visibility="gone"
-                    tools:listitem="@layout/item_home_trending" />
-
-            </LinearLayout>
-
-            <!-- Single-Section Layout (Vertical List) -->
-            <LinearLayout
-                android:id="@+id/layout_single_section"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:visibility="gone">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp">
-
-                    <View
-                        android:id="@+id/indicator_single"
-                        android:layout_width="4dp"
-                        android:layout_height="24dp"
-                        android:layout_centerVertical="true"
-                        android:background="@drawable/bg_section_indicator" />
-
-                    <TextView
-                        android:id="@+id/text_single_title"
-                        style="@style/TextAppearance.Cricket.HeadlineMedium"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginStart="12dp"
-                        android:layout_toEndOf="@id/indicator_single"
-                        android:fontFamily="@font/oswald_regular"
-                        android:text="CRICKET"
-                        android:textColor="@color/white"
-                        android:textSize="24dp" />
-                </RelativeLayout>
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_single"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:nestedScrollingEnabled="false"
-                    tools:listitem="@layout/item_home_match" />
-            </LinearLayout>
-
-        </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
-
-</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

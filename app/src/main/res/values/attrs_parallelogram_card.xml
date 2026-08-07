@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="ParallelogramCardView">
+        <!-- How far the top-left/bottom-right corners are pushed inward, in dp.
+             Same value drives both the left and right edges so they stay parallel. -->
+        <attr name="skewAmount" format="dimension" />
+        <!-- Corner rounding radius, in dp -->
+        <attr name="cardCornerRadius" format="dimension" />
+        <attr name="cardStrokeColor" format="color" />
+        <attr name="cardStrokeWidth" format="dimension" />
+        <attr name="cardElevation" format="dimension" />
+    </declare-styleable>
+</resources>

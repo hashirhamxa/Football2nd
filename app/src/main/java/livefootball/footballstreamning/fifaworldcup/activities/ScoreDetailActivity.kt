@@ -1,30 +1,31 @@
 package livefootball.footballstreamning.fifaworldcup.activities
 
 import android.os.Bundle
+import android.view.View
+import android.view.WindowManager
 import android.widget.ImageButton
+import android.widget.ImageView
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-import livefootball.footballstreamning.fifaworldcup.R
 import livecricket.livecrickettv.cricketstreaming.viewmodels.ScoreDetailViewModel
+import livefootball.footballstreamning.fifaworldcup.R
 import livefootball.footballstreamning.fifaworldcup.adapters.ScoreLineAdapter
-import livefootball.footballstreamning.fifaworldcup.models.FootballMatchScoreModel
-import livefootball.footballstreamning.fifaworldcup.viewmodels.FootballScoreViewModel
-import android.view.View
-import android.widget.ProgressBar
-import com.bumptech.glide.Glide
-import android.widget.ImageView
+import livefootball.footballstreamning.fifaworldcup.ads.AdsHelper
 import livefootball.footballstreamning.fifaworldcup.database.MatchEntity
+import livefootball.footballstreamning.fifaworldcup.models.FootballMatchScoreModel
 import livefootball.footballstreamning.fifaworldcup.models.Inning
 import livefootball.footballstreamning.fifaworldcup.network.AppRepository
-import livefootball.footballstreamning.fifaworldcup.ads.AdsHelper
+import livefootball.footballstreamning.fifaworldcup.viewmodels.FootballScoreViewModel
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -40,6 +41,10 @@ class ScoreDetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_match_detail)
+        getWindow().setFlags(
+            WindowManager.LayoutParams.FLAG_SECURE,
+            WindowManager.LayoutParams.FLAG_SECURE
+        )
 
         val matchId = intent.getStringExtra("MATCH_ID") ?: ""
         val isFootball = intent.getBooleanExtra("IS_FOOTBALL", false)

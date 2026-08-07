@@ -5,7 +5,7 @@
     android:layout_width="280dp"
     android:layout_height="160dp"
     android:layout_marginEnd="12dp"
-    app:cardCornerRadius="20dp"
+    app:cardCornerRadius="0dp"
     app:cardElevation="0dp"
     app:strokeWidth="0dp">
 
@@ -87,7 +87,7 @@
             android:layout_marginHorizontal="12dp"
             android:layout_marginBottom="4dp"
             android:textColor="@color/white"
-            android:fontFamily="@font/oswald_regular"
+            android:fontFamily="@font/archivo_narrow_reg"
             android:textSize="18dp"
             app:layout_constraintBottom_toTopOf="@id/text_match_status"
             app:layout_constraintEnd_toEndOf="parent"
