@@ -140,31 +140,34 @@ class HighlightsViewModel @Inject constructor(
 
     /**
      * Filters events within tournaments to only include visible highlights.
-     * Implements "Event Promotion" if only one highlight event exists in a tournament.
+     * Implements tournament grouping rules for highlights:
+     * - More than 2 highlight events → show tournament group
+     * - Exactly 1 highlight event → show event directly (single event promotion)
+     * - 0 highlight events → don't show tournament at all
      */
     private fun processTournaments(
         tournaments: List<TournamentWithEvents>,
         isTrending: Boolean = false
     ): List<HomeDisplayItem> {
         return tournaments.mapNotNull { tWithE ->
-            // Crucial: Only consider events where isHighlight is true
+            // Only consider events where isHighlight is true
             val highlightEvents = tWithE.events.filter { it.isHighlight == true }
-            
+
             if (highlightEvents.size == 1) {
-                // Single highlight promotion logic
+                // Single highlight event: show event directly (skip tournament grouping)
                 val event = highlightEvents[0]
                 HomeDisplayItem(
                     id = event.id,
                     title = event.eventName ?: "",
                     subtitle = tWithE.tournament.name,
-                    status = event.description ?: "HIGHLIGHTS",
+                    status = event.description ?: "HIGHLIGHT",
                     imageUrl = event.eventThumbUrl ?: tWithE.tournament.thumbUrl,
-                    isLive = false, // History/Highlights are by definition not live
+                    isLive = false,
                     isTrending = isTrending,
                     originalObject = event
                 )
-            } else if (highlightEvents.size > 1) {
-                // Show tournament group if multiple highlight events exist
+            } else if (highlightEvents.size > 2) {
+                // More than 2 highlight events: show tournament group
                 HomeDisplayItem(
                     id = tWithE.tournament.id,
                     title = tWithE.tournament.name ?: "",
@@ -176,6 +179,7 @@ class HighlightsViewModel @Inject constructor(
                     originalObject = tWithE.tournament
                 )
             } else null
+            // 0 or exactly 2 highlight events: don't show tournament
         }
     }
 }

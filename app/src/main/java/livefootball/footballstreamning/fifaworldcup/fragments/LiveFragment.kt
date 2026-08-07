@@ -105,7 +105,7 @@ class LiveFragment : Fragment() {
                                 val section = sections[0]
                                 textSingleTitle.text = section.title
                                 rvSingle.layoutManager = LinearLayoutManager(context)
-                                rvSingle.adapter = CategoryAdapter(section.items, true) { handleItemClick(it) }
+                                rvSingle.adapter = CategoryAdapter(section.items, true, false) { handleItemClick(it) }
                             } else {
                                 // Multi section mode
 
@@ -122,7 +122,7 @@ class LiveFragment : Fragment() {
                                             rvCricket.apply {
                                                 visibility = View.VISIBLE
                                                 layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-                                                adapter = CategoryAdapter(section.items, false) { handleItemClick(it) }
+                                                adapter = CategoryAdapter(section.items, false, false) { handleItemClick(it) }
                                             }
                                             layoutMulti.addView(sectionCricket)
                                             layoutMulti.addView(rvCricket)
@@ -132,7 +132,7 @@ class LiveFragment : Fragment() {
                                             rvFootball.apply {
                                                 visibility = View.VISIBLE
                                                 layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-                                                adapter = CategoryAdapter(section.items, false) { handleItemClick(it) }
+                                                adapter = CategoryAdapter(section.items, false, false) { handleItemClick(it) }
                                             }
                                             layoutMulti.addView(sectionFootball)
                                             layoutMulti.addView(rvFootball)
@@ -142,7 +142,7 @@ class LiveFragment : Fragment() {
                                             rvTrending.apply {
                                                 visibility = View.VISIBLE
                                                 layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-                                                adapter = CategoryAdapter(section.items, false) { handleItemClick(it) }
+                                                adapter = CategoryAdapter(section.items, false, false) { handleItemClick(it) }
                                             }
                                             layoutMulti.addView(sectionTrending)
                                             layoutMulti.addView(rvTrending)

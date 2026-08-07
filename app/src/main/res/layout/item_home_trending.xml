@@ -31,7 +31,7 @@
             android:background="@drawable/bg_gradient_overlay" />
 
         <FrameLayout
-            android:id="@+id/layout_live_indicator"
+            android:id="@+id/layout_status_badge"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -120,6 +120,38 @@
                 android:letterSpacing="0.05"
                 tools:text="T20 WORLD CUP" />
         </FrameLayout>
+
+        <!-- Countdown for upcoming events -->
+        <TextView
+            android:id="@+id/text_starting_in"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="2dp"
+            android:fontFamily="@font/jet_brains_mono_regular"
+            android:text="Starting in"
+            android:textColor="@color/white"
+            android:alpha="0.7"
+            android:textSize="10dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@id/text_countdown"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/text_countdown"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:fontFamily="@font/jet_brains_mono_bold"
+            android:textColor="@color/primary"
+            android:textSize="14dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="02:15:30"
+            tools:visibility="visible" />
 
         <!-- Existing hidden views for ID compatibility -->
         <View android:id="@+id/bg_live_overlay" android:layout_width="1dp" android:layout_height="1dp" android:visibility="gone" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" />
