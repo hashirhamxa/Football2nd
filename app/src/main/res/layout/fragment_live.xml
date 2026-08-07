@@ -34,7 +34,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="16dp"
-                        android:layout_marginTop="16dp">
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="16dp"
+                        >
 
                         <ImageView
                             android:id="@+id/ic_trending"
@@ -65,7 +67,6 @@
                         android:id="@+id/rv_trending"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
                         android:clipToPadding="false"
                         android:orientation="horizontal"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
@@ -77,7 +78,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="16dp"
-                        android:layout_marginTop="32dp">
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="16dp">
 
                         <ImageView
                             android:id="@+id/ic_cricket"
@@ -108,7 +110,6 @@
                         android:id="@+id/rv_cricket"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
                         android:nestedScrollingEnabled="false"
                         tools:listitem="@layout/item_home_cricket" />
 
@@ -118,7 +119,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="16dp"
-                        android:layout_marginTop="32dp">
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="16dp">
 
                         <ImageView
                             android:id="@+id/ic_football"
@@ -149,7 +151,6 @@
                         android:id="@+id/rv_football"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
                         android:nestedScrollingEnabled="false"
                         tools:listitem="@layout/item_home_football" />
 
@@ -161,28 +162,31 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="16dp"
                     android:visibility="gone">
 
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="16dp">
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="16dp"
+                        >
 
-                        <View
+                        <ImageView
                             android:id="@+id/indicator_single"
-                            android:layout_width="4dp"
-                            android:layout_height="24dp"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
                             android:layout_centerVertical="true"
-                            android:background="@drawable/bg_section_indicator" />
+                            android:src="@drawable/cricket_tittle_icon" />
 
                         <TextView
                             android:id="@+id/text_single_title"
                             style="@style/SectionTitleStyle"
-                            android:layout_marginStart="12dp"
+                            android:layout_marginStart="8dp"
                             android:layout_toEndOf="@id/indicator_single"
                             android:layout_centerVertical="true"
-                            android:text="LIVE" />
+                            android:text="Live Cricket"
+                            android:textStyle="bold|italic"/>
                     </RelativeLayout>
 
                     <androidx.recyclerview.widget.RecyclerView
