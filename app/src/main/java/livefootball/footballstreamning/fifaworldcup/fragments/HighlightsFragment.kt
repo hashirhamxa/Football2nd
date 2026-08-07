@@ -101,7 +101,7 @@ class HighlightsFragment : Fragment() {
                             textSingleTitle.text = section.title
                             rvSingle.apply {
                                 layoutManager = LinearLayoutManager(context)
-                                adapter = CategoryAdapter(section.items, true) { handleItemClick(it) }
+                                adapter = CategoryAdapter(section.items, true, true) { handleItemClick(it) }
                             }
                         } else {
                             // Render multiple sections with horizontal carousels
@@ -119,7 +119,7 @@ class HighlightsFragment : Fragment() {
                                         rvCricket.apply {
                                             visibility = View.VISIBLE
                                             layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-                                            adapter = CategoryAdapter(section.items) { handleItemClick(it) }
+                                            adapter = CategoryAdapter(section.items, false, true) { handleItemClick(it) }
                                         }
                                         layoutMulti.addView(sectionCricket)
                                         layoutMulti.addView(rvCricket)
@@ -129,7 +129,7 @@ class HighlightsFragment : Fragment() {
                                         rvFootball.apply {
                                             visibility = View.VISIBLE
                                             layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-                                            adapter = CategoryAdapter(section.items) { handleItemClick(it) }
+                                            adapter = CategoryAdapter(section.items, false, true) { handleItemClick(it) }
                                         }
                                         layoutMulti.addView(sectionFootball)
                                         layoutMulti.addView(rvFootball)
@@ -139,7 +139,7 @@ class HighlightsFragment : Fragment() {
                                         rvTrending.apply {
                                             visibility = View.VISIBLE
                                             layoutManager = LinearLayoutManager(context)
-                                            adapter = CategoryAdapter(section.items) { handleItemClick(it) }
+                                            adapter = CategoryAdapter(section.items, false, true) { handleItemClick(it) }
                                         }
                                         layoutMulti.addView(sectionTrending)
                                         layoutMulti.addView(rvTrending)

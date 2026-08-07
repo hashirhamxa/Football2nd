@@ -42,7 +42,7 @@
                             android:layout_height="20dp"
                             android:layout_centerVertical="true"
                             android:src="@drawable/trending_tittle_icon"
-                            app:tint="@color/primary" />
+                            />
 
                         <TextView
                             android:id="@+id/text_section_title_trending"
@@ -50,7 +50,7 @@
                             android:layout_marginStart="8dp"
                             android:layout_toEndOf="@id/ic_trending"
                             android:layout_centerVertical="true"
-                            android:text="Trending Tournaments"
+                            android:text="Trending Now"
                             android:textStyle="bold|italic" />
 
                         <TextView
@@ -68,7 +68,6 @@
                         android:layout_marginTop="8dp"
                         android:clipToPadding="false"
                         android:orientation="horizontal"
-                        android:paddingHorizontal="8dp"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                         tools:listitem="@layout/item_home_trending" />
 

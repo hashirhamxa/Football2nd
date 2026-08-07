@@ -68,7 +68,7 @@ class TournamentActivity : AppCompatActivity() {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 launch {
                     viewModel.items.collectLatest { items ->
-                        rvTournaments.adapter = CategoryAdapter(items, true) { handleItemClick(it) }
+                        rvTournaments.adapter = CategoryAdapter(items, true, isHighlights) { handleItemClick(it) }
                     }
                 }
 

@@ -29,41 +29,32 @@
                 android:id="@+id/section_cricket"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp">
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="16dp">
 
-                <View
+                <ImageView
                     android:id="@+id/indicator_cricket"
-                    android:layout_width="4dp"
-                    android:layout_height="24dp"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
                     android:layout_centerVertical="true"
-                    android:background="@drawable/bg_section_indicator" />
+                    android:src="@drawable/cricket_tittle_icon"
+                    />
 
                 <TextView
                     android:id="@+id/text_cricket_header"
-                    style="@style/TextAppearance.Cricket.HeadlineMedium"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="12dp"
+                    style="@style/SectionTitleStyle"
+                    android:layout_marginStart="8dp"
                     android:layout_toEndOf="@id/indicator_cricket"
-                    android:fontFamily="@font/archivo_narrow_reg"
-                    android:text="🏏 HIGHLIGHTS"
-                    android:textColor="@color/white"
-                    android:textSize="24dp" />
+                    android:layout_centerVertical="true"
+                    android:text="Highlights"
+                    android:textStyle="bold|italic" />
 
                 <TextView
                     android:id="@+id/btn_see_all_cricket"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    style="@style/AllActionStyle"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
-                    android:drawablePadding="4dp"
-                    android:fontFamily="@font/jet_brains_mono_regular"
-                    android:text="SEE ALL"
-                    android:textColor="@color/secondary"
-                    android:textSize="14dp"
-                    app:drawableEndCompat="@drawable/arrow_right_icon"
-                    app:drawableTint="@color/secondary" />
+                    android:text="ALL >" />
             </RelativeLayout>
 
             <androidx.recyclerview.widget.RecyclerView
@@ -81,41 +72,33 @@
                 android:id="@+id/section_football"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="32dp"
                 android:layout_marginBottom="16dp">
 
-                <View
+                <ImageView
                     android:id="@+id/indicator_football"
-                    android:layout_width="4dp"
-                    android:layout_height="24dp"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
                     android:layout_centerVertical="true"
-                    android:background="@drawable/bg_section_indicator" />
+                    android:src="@drawable/football_tittle_icon"
+                    />
 
                 <TextView
                     android:id="@+id/text_football_header"
-                    style="@style/TextAppearance.Cricket.HeadlineMedium"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:fontFamily="@font/archivo_narrow_reg"
-                    android:layout_marginStart="12dp"
+                    style="@style/SectionTitleStyle"
+                    android:layout_marginStart="8dp"
                     android:layout_toEndOf="@id/indicator_football"
-                    android:text="⚽ HIGHLIGHTS"
-                    android:textColor="@color/white"
-                    android:textSize="24dp" />
+                    android:layout_centerVertical="true"
+                    android:text="Highlights"
+                    android:textStyle="bold|italic"  />
 
                 <TextView
                     android:id="@+id/btn_see_all_football"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    style="@style/AllActionStyle"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
-                    android:drawablePadding="4dp"
-                    android:fontFamily="@font/jet_brains_mono_regular"
-                    android:text="SEE ALL"
-                    android:textColor="@color/secondary"
-                    android:textSize="14dp"
-                    app:drawableEndCompat="@drawable/arrow_right_icon"
-                    app:drawableTint="@color/secondary" />
+                    android:text="ALL >"/>
             </RelativeLayout>
 
             <androidx.recyclerview.widget.RecyclerView
