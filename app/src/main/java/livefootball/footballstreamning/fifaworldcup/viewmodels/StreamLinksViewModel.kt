@@ -7,25 +7,26 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import livefootball.footballstreamning.fifaworldcup.database.EventEntity
+import livefootball.footballstreamning.fifaworldcup.database.HighlightEntity
+import livefootball.footballstreamning.fifaworldcup.database.LinkEntity
 import livefootball.footballstreamning.fifaworldcup.network.AppRepository
 import javax.inject.Inject
 
 @HiltViewModel
-class EventViewModel @Inject constructor(
+class StreamLinksViewModel @Inject constructor(
     private val repository: AppRepository
 ) : ViewModel() {
 
-    private val _events = MutableStateFlow<List<EventEntity>>(emptyList())
-    val events: StateFlow<List<EventEntity>> = _events
+    private val _links = MutableStateFlow<List<LinkEntity>>(emptyList())
+    val links: StateFlow<List<LinkEntity>> = _links
 
-    private val _highlightEvents = MutableStateFlow<List<EventEntity>>(emptyList())
-    val highlightEvents: StateFlow<List<EventEntity>> = _highlightEvents
+    private val _highlights = MutableStateFlow<List<HighlightEntity>>(emptyList())
+    val highlights: StateFlow<List<HighlightEntity>> = _highlights
 
     private val _isRefreshing = MutableStateFlow(false)
     val isRefreshing: StateFlow<Boolean> = _isRefreshing
 
-    fun refresh(tournamentId: Int, isHighlights: Boolean) {
+    fun refresh(eventId: Int, isHighlights: Boolean) {
         viewModelScope.launch {
             _isRefreshing.value = true
             repository.fetchAndSaveConfig { _, _ ->
@@ -34,19 +35,18 @@ class EventViewModel @Inject constructor(
         }
     }
 
-    fun loadEvents(tournamentId: Int) {
+    fun loadLinks(eventId: Int) {
         viewModelScope.launch {
-            repository.getEventsForTournamentFlow(tournamentId).collectLatest { eventList ->
-                // Show events that are visible (includes live and upcoming)
-                _events.value = eventList.filter { it.isVisible != false }
+            repository.getLinksForEventFlow(eventId).collectLatest { linkList ->
+                _links.value = linkList
             }
         }
     }
 
-    fun loadHighlightEvents(tournamentId: Int) {
+    fun loadHighlights(eventId: Int) {
         viewModelScope.launch {
-            repository.getHighlightEventsForTournamentFlow(tournamentId).collectLatest { eventList ->
-                _highlightEvents.value = eventList
+            repository.getHighlightsForEventFlow(eventId).collectLatest { highlightList ->
+                _highlights.value = highlightList
             }
         }
     }

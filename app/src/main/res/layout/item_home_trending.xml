@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<livefootball.footballstreamning.fifaworldcup.utilities.ParallelogramCardView
+<livefootball.footballstreamning.fifaworldcup.utilities.SlantedParallelogramCard
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -8,6 +8,9 @@
     android:layout_width="280dp"
     android:layout_height="160dp"
     android:layout_margin="8dp"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?attr/selectableItemBackground"
     app:skewAmount="18dp"
     app:cardCornerRadius="0dp"
     app:cardStrokeColor="@color/primary"
@@ -161,4 +164,4 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-</livefootball.footballstreamning.fifaworldcup.utilities.ParallelogramCardView>
+</livefootball.footballstreamning.fifaworldcup.utilities.SlantedParallelogramCard>

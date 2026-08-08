@@ -1,4 +1,4 @@
-package livecricket.livecrickettv.cricketstreaming.viewmodels
+package livefootball.footballstreamning.fifaworldcup.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

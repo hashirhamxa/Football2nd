@@ -12,7 +12,7 @@ import androidx.core.app.NotificationCompat
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import livefootball.footballstreamning.fifaworldcup.R
-import livefootball.footballstreamning.fifaworldcup.activities.SplashActivity
+import livefootball.footballstreamning.fifaworldcup.activities.AppSplashActivity
 
 class MyFirebaseMessagingService : FirebaseMessagingService() {
 
@@ -34,7 +34,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
     }
 
     private fun sendNotification(title: String?, messageBody: String?) {
-        val intent = Intent(this, SplashActivity::class.java)
+        val intent = Intent(this, AppSplashActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
         val pendingIntent = PendingIntent.getActivity(
             this, 0, intent,

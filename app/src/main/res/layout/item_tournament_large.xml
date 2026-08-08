@@ -1,13 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+<livefootball.footballstreamning.fifaworldcup.utilities.SlantedParallelogramCard
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/Widget.Cricket.CardView"
     android:layout_width="match_parent"
-    android:layout_height="220dp"
+    android:layout_height="200dp"
     android:layout_marginBottom="20dp"
-    app:strokeColor="#33FF5C00"
-    app:strokeWidth="1.5dp">
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?attr/selectableItemBackground"
+    app:skewAmount="18dp"
+    app:cardCornerRadius="0dp"
+    app:cardStrokeColor="@color/primary"
+    app:cardStrokeWidth="1.5dp"
+    app:cardElevation="2dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -26,146 +33,305 @@
             android:layout_height="match_parent"
             android:background="@drawable/gradient_trending_card" />
 
-        <!-- Top Badges -->
-        <TextView
-            android:id="@+id/text_tournament_name"
-            android:fontFamily="@font/jet_brains_mono_regular"
-            android:textSize="12dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:background="@drawable/bg_badge_overlay"
-            android:paddingHorizontal="12dp"
-            android:paddingVertical="6dp"
-            android:textColor="@color/white"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="ICC T20 WORLD CUP" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="16dp">
 
-        <LinearLayout
-            android:id="@+id/text_live_badge"
-            android:layout_width="wrap_content"
-            android:layout_height="23dp"
-            android:layout_margin="16dp"
-            android:background="@drawable/bg_badge_live_red"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:paddingHorizontal="8dp"
-            android:paddingVertical="4dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            <!-- Top Badges -->
+            <TextView
+                android:id="@+id/text_tournament_name"
+                android:fontFamily="@font/jet_brains_mono_regular"
+                android:textSize="12dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_badge_overlay"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="6dp"
+                android:textColor="@color/white"
+                android:shadowColor="@color/black"
+                android:shadowDx="1"
+                android:layout_marginStart="6dp"
+                android:shadowDy="1"
+                android:shadowRadius="2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="ICC T20 WORLD CUP" />
 
-            <View
-                android:id="@+id/dot_live_tournament"
-                android:layout_width="8dp"
-                android:layout_height="8dp"
-                android:layout_marginEnd="4dp"
-                android:background="@drawable/live_dot"
-                android:backgroundTint="@color/white" />
+            <LinearLayout
+                android:id="@+id/text_live_badge"
+                android:layout_width="wrap_content"
+                android:layout_height="23dp"
+                android:background="@drawable/bg_badge_live_red"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingHorizontal="8dp"
+                android:paddingVertical="4dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <View
+                    android:id="@+id/dot_live_tournament"
+                    android:layout_width="8dp"
+                    android:layout_height="8dp"
+                    android:layout_marginEnd="4dp"
+                    android:background="@drawable/live_dot"
+                    android:backgroundTint="@color/white" />
+
+                <TextView
+                    android:id="@+id/text_live_badge_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/jet_brains_mono_bold"
+                    android:text="LIVE"
+                    android:textColor="@color/white"
+                    android:textSize="12dp"
+                    android:shadowColor="@color/black"
+                    android:shadowDx="1"
+                    android:shadowDy="1"
+                    android:shadowRadius="2" />
+
+            </LinearLayout>
+
+            <!-- Teams View (Like LiveMatchesFragment) -->
+            <LinearLayout
+                android:id="@+id/layout_teams"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:orientation="vertical"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:visibility="visible">
+
+                <!-- Team 1 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <FrameLayout
+                        android:layout_width="30dp"
+                        android:layout_height="30dp">
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/bg_circular_avatar" />
+                        <TextView
+                            android:id="@+id/text_team1_code"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:textColor="@color/white"
+                            android:textSize="12dp"
+                            android:textStyle="bold"
+                            android:shadowColor="@color/black"
+                            android:shadowDx="1"
+                            android:shadowDy="1"
+                            android:shadowRadius="2"
+                            tools:text="IND" />
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:id="@+id/img_team1"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:background="@drawable/bg_circular_avatar"
+                            android:scaleType="centerCrop"
+                            app:shapeAppearanceOverlay="@style/CircleImageView"
+                            tools:src="@tools:sample/avatars" />
+                    </FrameLayout>
+
+                    <TextView
+                        android:id="@+id/text_team1_name"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_weight="1"
+                        android:textColor="@color/white"
+                        android:textSize="18dp"
+                        android:fontFamily="@font/archivo_narrow_reg"
+                        android:textAllCaps="true"
+                        android:letterSpacing="0.02"
+                        android:shadowColor="@color/black"
+                        android:shadowDx="1.5"
+                        android:shadowDy="1.5"
+                        android:shadowRadius="3"
+                        tools:text="INDIA" />
+                </LinearLayout>
+
+                <!-- Team 2 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <FrameLayout
+                        android:layout_width="30dp"
+                        android:layout_height="30dp">
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/bg_circular_avatar" />
+                        <TextView
+                            android:id="@+id/text_team2_code"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:textColor="@color/white"
+                            android:textSize="12dp"
+                            android:fontFamily="@font/inter_bold"
+                            android:shadowColor="@color/black"
+                            android:shadowDx="1"
+                            android:shadowDy="1"
+                            android:shadowRadius="2"
+                            tools:text="PAK" />
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:id="@+id/img_team2"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:background="@drawable/bg_circular_avatar"
+                            android:scaleType="centerCrop"
+                            app:shapeAppearanceOverlay="@style/CircleImageView"
+                            tools:src="@tools:sample/avatars" />
+                    </FrameLayout>
+
+                    <TextView
+                        android:id="@+id/text_team2_name"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_weight="1"
+                        android:textColor="@color/white"
+                        android:textSize="18dp"
+                        android:fontFamily="@font/archivo_narrow_reg"
+                        android:textAllCaps="true"
+                        android:letterSpacing="0.02"
+                        android:shadowColor="@color/black"
+                        android:shadowDx="1.5"
+                        android:shadowDy="1.5"
+                        android:shadowRadius="3"
+                        tools:text="PAKISTAN" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Center Match Title (Fallback) -->
+            <TextView
+                android:id="@+id/text_match_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:fontFamily="@font/archivo_narrow_reg"
+                android:textSize="28dp"
+                android:shadowColor="@color/black"
+                android:shadowDx="2"
+                android:shadowDy="2"
+                android:shadowRadius="4"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="AUSTRALIA VS INDIA" />
+
+            <!-- Bottom Info -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <TextView
+                    android:id="@+id/text_status_main"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/primary"
+                    android:textSize="14dp"
+                    android:fontFamily="@font/jet_brains_mono_semi_bold"
+                    android:shadowColor="@color/black"
+                    android:shadowDx="1"
+                    android:shadowDy="1"
+                    android:shadowRadius="2"
+                    tools:text="LIVE NOW" />
+
+                <TextView
+                    android:id="@+id/text_status_sub"
+                    android:fontFamily="@font/jet_brains_mono_semi_bold"
+                    android:textSize="14dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:alpha="0.7"
+                    android:textColor="@color/white"
+                    android:shadowColor="@color/black"
+                    android:shadowDx="1"
+                    android:shadowDy="1"
+                    android:shadowRadius="2"
+                    tools:text="1.2M WATCHING" />
+
+            </LinearLayout>
 
             <TextView
-                android:id="@+id/text_live_badge_text"
+                android:id="@+id/text_starting_in"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="2dp"
+                android:layout_marginEnd="10dp"
+                android:fontFamily="@font/jet_brains_mono_regular"
+                android:text="Starting in"
+                android:textColor="@color/white"
+                android:alpha="0.7"
+                android:textSize="6dp"
+                android:visibility="gone"
+                android:shadowColor="@color/black"
+                android:shadowDx="1"
+                android:shadowDy="1"
+                android:shadowRadius="2"
+                app:layout_constraintBottom_toTopOf="@id/text_countdown"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:visibility="visible" />
+
+            <TextView
+                android:id="@+id/text_countdown"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/jet_brains_mono_bold"
-                android:text="LIVE"
-                android:textColor="@color/white"
-                android:textSize="12dp" />
-
-        </LinearLayout>
-
-        <!-- Center Match Title -->
-        <TextView
-            android:id="@+id/text_match_title"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="24dp"
-            android:gravity="center"
-            android:textColor="@color/white"
-            android:fontFamily="@font/archivo_narrow_reg"
-            android:textSize="28dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="AUSTRALIA VS INDIA" />
-
-        <!-- Bottom Info -->
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/btn_action"
-            app:layout_constraintStart_toStartOf="parent">
-
-            <TextView
-                android:id="@+id/text_status_main"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:textColor="@color/primary"
                 android:textSize="14dp"
-                android:fontFamily="@font/jet_brains_mono_semi_bold"
-                tools:text="LIVE NOW" />
+                android:layout_marginEnd="6dp"
+                android:visibility="gone"
+                android:shadowColor="@color/black"
+                android:shadowDx="1"
+                android:shadowDy="1"
+                android:shadowRadius="2"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:text="02:15:30"
+                tools:visibility="visible" />
 
-            <TextView
-                android:id="@+id/text_status_sub"
-                android:fontFamily="@font/jet_brains_mono_semi_bold"
-                android:textSize="14dp"
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_action"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:alpha="0.7"
-                android:textColor="@color/white"
-                tools:text="1.2M WATCHING" />
+                android:layout_height="32dp"
+                android:paddingHorizontal="12dp"
+                android:minHeight="0dp"
+                android:minWidth="0dp"
+                android:textSize="11sp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/jet_brains_mono_bold"
+                android:background="@drawable/bg_button_watch_now"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:visibility="visible"
+                tools:text="WATCH NOW" />
 
-        </LinearLayout>
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_action"
-            android:background="@drawable/rounded_rect_bck"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:minHeight="44dp"
-            android:fontFamily="@font/archivo_narrow_reg"
-            android:textSize="15dp"
-            android:paddingHorizontal="24dp"
-            android:text="WATCH NOW"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
-
-        <TextView
-            android:id="@+id/text_starting_in"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="2dp"
-            android:fontFamily="@font/jet_brains_mono_regular"
-            android:text="Starting in"
-            android:textColor="@color/white"
-            android:alpha="0.7"
-            android:textSize="10dp"
-            android:visibility="gone"
-            app:layout_constraintBottom_toTopOf="@id/text_countdown"
-            app:layout_constraintEnd_toEndOf="parent"
-            tools:visibility="visible" />
-
-        <TextView
-            android:id="@+id/text_countdown"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="16dp"
-            android:fontFamily="@font/jet_brains_mono_bold"
-            android:textColor="@color/primary"
-            android:textSize="14dp"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            tools:text="02:15:30"
-            tools:visibility="visible" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-</com.google.android.material.card.MaterialCardView>
+</livefootball.footballstreamning.fifaworldcup.utilities.SlantedParallelogramCard>
