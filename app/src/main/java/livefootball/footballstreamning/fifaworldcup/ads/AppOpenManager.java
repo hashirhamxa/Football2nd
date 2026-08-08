@@ -30,7 +30,7 @@ import java.util.List;
 
 import livefootball.footballstreamning.fifaworldcup.BuildConfig;
 import livefootball.footballstreamning.fifaworldcup.network.AppRepository;
-import livefootball.footballstreamning.fifaworldcup.activities.SplashActivity;
+import livefootball.footballstreamning.fifaworldcup.activities.AppSplashActivity;
 import livefootball.footballstreamning.fifaworldcup.newplayer.NewPlayerActivity;
 import livefootball.footballstreamning.fifaworldcup.utilities.Utils;
 
@@ -182,7 +182,7 @@ public class AppOpenManager implements Application.ActivityLifecycleCallbacks, D
      * Shows the ad if one isn't already showing.
      */
     public void showAdIfAvailable() {
-        if (currentActivity instanceof SplashActivity || currentActivity instanceof NewPlayerActivity)
+        if (currentActivity instanceof AppSplashActivity || currentActivity instanceof NewPlayerActivity)
             return;
 
         if (!isShowingAd && isAdAvailable()) {

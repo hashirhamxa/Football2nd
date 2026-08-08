@@ -4,7 +4,7 @@
     <!-- Core Brand Colors (Matching Screenshot) -->
     <color name="primary">#00F2FF</color> <!-- Neon Cyan -->
     <color name="secondary">#00F2FF</color>
-    <color name="tertiary">#CCFF00</color> <!-- Bright Lime Green for LIVE -->
+    <color name="tertiary">#ABD600</color> <!-- Bright Lime Green for LIVE -->
     <color name="background">#0F1115</color> <!-- Premium Dark Navy/Black -->
     <color name="surface">#1A1D24</color> <!-- Card Background -->
     <color name="surface_variant">#242932</color>

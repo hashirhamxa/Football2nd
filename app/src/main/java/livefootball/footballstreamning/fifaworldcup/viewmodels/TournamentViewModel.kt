@@ -1,4 +1,4 @@
-package livecricket.livecrickettv.cricketstreaming.viewmodels
+package livefootball.footballstreamning.fifaworldcup.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -62,11 +62,11 @@ class TournamentViewModel @Inject constructor(
     ): List<HomeDisplayItem> {
         return tournaments.mapNotNull { tWithE ->
             val eventsToUse = if (isHighlights) {
-                // Show if explicitly true or if highlight mode is on and it's not explicitly false
+                // Show highlights
                 tWithE.events.filter { it.isHighlight == true }
             } else {
-                // Show in live mode if isLive is true or null (defaulting to live)
-                tWithE.events.filter { it.isLive == true }
+                // Show in live mode if visible (includes live and upcoming)
+                tWithE.events.filter { it.isVisible != false }
             }
 
             if (eventsToUse.size == 1) {
@@ -76,22 +76,27 @@ class TournamentViewModel @Inject constructor(
                     id = event.id,
                     title = event.eventName ?: "",
                     subtitle = tWithE.tournament.name,
-                    status = event.description ?: if (isHighlights) "HIGHLIGHT" else "LIVE",
+                    status = event.description ?: if (isHighlights) "HIGHLIGHT" else if (event.isLive == true) "LIVE" else "UPCOMING",
                     imageUrl = event.eventThumbUrl ?: tWithE.tournament.thumbUrl,
-                    isLive = !isHighlights,
+                    isLive = event.isLive == true,
                     isTrending = false,
                     startTime = if (!isHighlights) event.startTime else null,
+                    team1Name = event.teamAName,
+                    team1Image = event.teamAImage,
+                    team2Name = event.teamBName,
+                    team2Image = event.teamBUrl,
                     originalObject = event
                 )
             } else if (eventsToUse.size > 1) {
                 // Show tournament group if multiple events
+                val hasLive = eventsToUse.any { it.isLive == true }
                 HomeDisplayItem(
                     id = tWithE.tournament.id,
                     title = tWithE.tournament.name ?: "",
                     subtitle = tWithE.tournament.sportType,
                     status = "${eventsToUse.size} ${if (isHighlights) "HIGHLIGHTS" else "MATCHES"}",
                     imageUrl = tWithE.tournament.thumbUrl,
-                    isLive = !isHighlights,
+                    isLive = hasLive,
                     isTrending = false,
                     originalObject = tWithE.tournament
                 )

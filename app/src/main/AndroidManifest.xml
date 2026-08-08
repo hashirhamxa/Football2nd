@@ -24,7 +24,7 @@ package="livefootball.footballstreamning.fifaworldcup">
 
 
     <activity
-        android:name="livefootball.footballstreamning.fifaworldcup.activities.SplashActivity"
+        android:name="livefootball.footballstreamning.fifaworldcup.activities.AppSplashActivity"
         android:exported="true"
         android:theme="@style/Theme.Cricket.Splash"
         android:screenOrientation="portrait">
@@ -35,23 +35,23 @@ package="livefootball.footballstreamning.fifaworldcup">
     </activity>
 
     <activity
-        android:name="livefootball.footballstreamning.fifaworldcup.activities.NewMainActivity"
+        android:name="livefootball.footballstreamning.fifaworldcup.activities.HomeDashboardActivity"
         android:exported="false"
         android:windowSoftInputMode="adjustResize" />
     <activity
-        android:name="livefootball.footballstreamning.fifaworldcup.activities.TournamentActivity"
+        android:name="livefootball.footballstreamning.fifaworldcup.activities.TournamentListActivity"
         android:exported="false"
         android:windowSoftInputMode="adjustResize" />
     <activity
-        android:name="livefootball.footballstreamning.fifaworldcup.activities.EventActivity"
+        android:name="livefootball.footballstreamning.fifaworldcup.activities.EventsListActivity"
         android:exported="false"
         android:windowSoftInputMode="adjustResize" />
     <activity
-        android:name="livefootball.footballstreamning.fifaworldcup.activities.LinksActivity"
+        android:name="livefootball.footballstreamning.fifaworldcup.activities.StreamSelectionActivity"
         android:exported="false"
         android:windowSoftInputMode="adjustResize" />
     <activity
-        android:name="livefootball.footballstreamning.fifaworldcup.activities.ScoreDetailActivity"
+        android:name="livefootball.footballstreamning.fifaworldcup.activities.MatchScoreDetailActivity"
         android:exported="false"
         android:windowSoftInputMode="adjustResize" />
 

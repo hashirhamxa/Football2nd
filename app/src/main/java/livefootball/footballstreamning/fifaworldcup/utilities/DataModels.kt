@@ -1,6 +1,6 @@
 package livefootball.footballstreamning.fifaworldcup.utilities
 
-data class HomeMatch(
+data class DashboardMatchItem(
     val title: String,
     val tournament: String,
     val status: String,

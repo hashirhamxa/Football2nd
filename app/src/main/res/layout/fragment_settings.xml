@@ -44,7 +44,7 @@
 
 
         <!-- Section 1 -->
-        <livefootball.footballstreamning.fifaworldcup.utilities.ParallelogramCardView
+        <livefootball.footballstreamning.fifaworldcup.utilities.SlantedParallelogramCard
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:cardBackgroundColor="@color/surface"
@@ -183,7 +183,7 @@
                 </RelativeLayout>
 
             </LinearLayout>
-        </livefootball.footballstreamning.fifaworldcup.utilities.ParallelogramCardView>
+        </livefootball.footballstreamning.fifaworldcup.utilities.SlantedParallelogramCard>
 
         <!-- Follow Us Header -->
         <TextView
@@ -201,7 +201,7 @@
             android:visibility="gone" />
 
         <!-- Section 2 -->
-        <livefootball.footballstreamning.fifaworldcup.utilities.ParallelogramCardView
+        <livefootball.footballstreamning.fifaworldcup.utilities.SlantedParallelogramCard
             android:id="@+id/card_follow_us"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -220,7 +220,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
             </LinearLayout>
-        </livefootball.footballstreamning.fifaworldcup.utilities.ParallelogramCardView>
+        </livefootball.footballstreamning.fifaworldcup.utilities.SlantedParallelogramCard>
 
         <!-- Information Header -->
         <TextView
@@ -236,7 +236,7 @@
             android:textSize="14dp" />
 
         <!-- Section 3 -->
-        <livefootball.footballstreamning.fifaworldcup.utilities.ParallelogramCardView
+        <livefootball.footballstreamning.fifaworldcup.utilities.SlantedParallelogramCard
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:cardBackgroundColor="@color/surface"
@@ -335,7 +335,7 @@
                 </RelativeLayout>
 
             </LinearLayout>
-        </livefootball.footballstreamning.fifaworldcup.utilities.ParallelogramCardView>
+        </livefootball.footballstreamning.fifaworldcup.utilities.SlantedParallelogramCard>
 
 
     </LinearLayout>
