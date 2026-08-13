@@ -522,9 +522,6 @@ class Utility {
         activity.runOnUiThread(() -> {
             boolean switchingModes = false;
 
-//            if (BuildConfig.DEBUG)
-//                Toast.makeText(activity, "Video frameRate: " + frameRate, Toast.LENGTH_LONG).show();
-
             if (frameRate > 0) {
                 Display display = activity.getWindow().getDecorView().getDisplay();
                 if (display == null) {
@@ -578,10 +575,7 @@ class Utility {
                             layoutParams.preferredDisplayModeId = modeBest.getModeId();
                             window.setAttributes(layoutParams);
                         }
-//                        if (BuildConfig.DEBUG)
-//                            Toast.makeText(activity, modes + "\n" +
-//                                    "Video frameRate: " + frameRate + "\n" +
-//                                    "Current display refreshRate: " + modeBest.getRefreshRate(), Toast.LENGTH_LONG).show();
+
                     }
                 }
             }

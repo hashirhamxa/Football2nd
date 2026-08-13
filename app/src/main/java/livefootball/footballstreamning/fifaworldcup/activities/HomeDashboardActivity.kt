@@ -1,5 +1,8 @@
 package livefootball.footballstreamning.fifaworldcup.activities
 
+import android.os.Build
+import android.content.pm.PackageManager
+import androidx.activity.result.contract.ActivityResultContracts
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
@@ -36,13 +39,19 @@ class HomeDashboardActivity : AppCompatActivity() {
 
     private val viewModel: HomeDashboardViewModel by viewModels()
 
+    private val requestPermissionLauncher = registerForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ) { isGranted: Boolean ->
+        // Handle result if necessary
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_new_main)
-//        getWindow().setFlags(
-//            WindowManager.LayoutParams.FLAG_SECURE,
-//            WindowManager.LayoutParams.FLAG_SECURE
-//        )
+        getWindow().setFlags(
+            WindowManager.LayoutParams.FLAG_SECURE,
+            WindowManager.LayoutParams.FLAG_SECURE
+        )
 
         viewPager = findViewById(R.id.view_pager)
         bottomNavigationView = findViewById(R.id.bottom_navigation)
@@ -105,6 +114,7 @@ class HomeDashboardActivity : AppCompatActivity() {
                                 .setDuration(300)
                                 .withEndAction {
                                     shimmerContainer.visibility = View.GONE
+                                    checkNotificationPermission()
                                 }
 
                             viewPager.alpha = 0f
@@ -252,6 +262,14 @@ class HomeDashboardActivity : AppCompatActivity() {
                 }
                 true
             } else false
+        }
+    }
+
+    private fun checkNotificationPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (checkSelfPermission(android.Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+                requestPermissionLauncher.launch(android.Manifest.permission.POST_NOTIFICATIONS)
+            }
         }
     }
 }

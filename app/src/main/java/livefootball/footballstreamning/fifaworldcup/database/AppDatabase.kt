@@ -17,7 +17,7 @@ import androidx.room.RoomDatabase
         ScoreEntity::class,
         MatchEntity::class
     ],
-    version = 4,
+    version = 5,
     exportSchema = false
 )
 abstract class AppDatabase : RoomDatabase() {

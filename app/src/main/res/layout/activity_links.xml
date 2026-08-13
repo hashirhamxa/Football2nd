@@ -293,7 +293,7 @@
                 android:layout_height="1dp"
                 android:layout_marginTop="32dp"
                 android:alpha="0.1"
-                android:background="@color/white" />
+                android:background="#50ABD600" />
 
             <TextView
                 style="@style/TextAppearance.Cricket.LabelSmall"
@@ -305,7 +305,7 @@
                 android:gravity="center"
                 android:letterSpacing="0.1"
                 android:text="STREAMING QUALITY DEPENDS ON YOUR INTERNET CONNECTION."
-                android:textColor="#E4BEB1"
+                android:textColor="#50ABD600"
                 android:textSize="10dp" />
 
             <LinearLayout

@@ -166,8 +166,8 @@ class MatchHighlightsViewModel @Inject constructor(
                     isTrending = isTrending,
                     originalObject = event
                 )
-            } else if (highlightEvents.size > 2) {
-                // More than 2 highlight events: show tournament group
+            } else if (highlightEvents.size >= 2) {
+                // More than 1 highlight event: show tournament group
                 HomeDisplayItem(
                     id = tWithE.tournament.id,
                     title = tWithE.tournament.name ?: "",
