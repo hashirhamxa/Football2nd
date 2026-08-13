@@ -22,6 +22,7 @@ data class AppData(
     @SerializedName("license_key") val licenseKey: String?,
     @SerializedName("product_id") val productId: String?,
     @SerializedName("socail_media_links") val socialMediaLinks: List<SocialMediaLink>?,
+    @SerializedName("ads_time_count_down") val adsTimeCountDown: Int?,
     @SerializedName("ads") val ads: List<Ad>?,
     @SerializedName("streaming") val streaming: List<StreamingWrapper>?
 )

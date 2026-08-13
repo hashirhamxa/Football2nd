@@ -2,6 +2,7 @@ package livefootball.footballstreamning.fifaworldcup.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.WindowManager
 import android.widget.ImageButton
 import android.widget.RelativeLayout
 import android.widget.TextView
@@ -37,10 +38,10 @@ class TournamentListActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tournament)
-//        getWindow().setFlags(
-//            WindowManager.LayoutParams.FLAG_SECURE,
-//            WindowManager.LayoutParams.FLAG_SECURE
-//        )
+        getWindow().setFlags(
+            WindowManager.LayoutParams.FLAG_SECURE,
+            WindowManager.LayoutParams.FLAG_SECURE
+        )
 
         val category = intent.getStringExtra("CATEGORY") ?: "CRICKET"
         val isHighlights = intent.getBooleanExtra("IS_HIGHLIGHTS_MODE", false)

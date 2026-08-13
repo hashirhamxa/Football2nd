@@ -56,6 +56,12 @@ public class AdsHelper {
         return instance;
     }
 
+    public void setAdInterval(Integer seconds) {
+        if (adTimeManager != null) {
+            adTimeManager.setAdInterval(seconds);
+        }
+    }
+
 
 
 

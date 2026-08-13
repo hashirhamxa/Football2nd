@@ -109,6 +109,7 @@ class AppSplashActivity : AppCompatActivity() {
         if (isSuccess) {
             val app = repository.getApp()
             if (app != null) {
+                AdsHelper.getInstance(this).setAdInterval(app.adsTimeCountDown)
                 val streaming = repository.getStreamingData(app.id).firstOrNull()?.streaming
                 val dialogShown = DialogManager.checkAndShowDialog(this, app, streaming, true)
                 if (dialogShown) return

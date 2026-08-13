@@ -1,6 +1,7 @@
 package livefootball.footballstreamning.fifaworldcup.activities
 
 import android.os.Bundle
+import android.view.WindowManager
 import android.widget.ImageButton
 import android.widget.RelativeLayout
 import android.widget.TextView
@@ -32,10 +33,10 @@ class EventsListActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tournament) // Reusing the same list layout
-//        getWindow().setFlags(
-//            WindowManager.LayoutParams.FLAG_SECURE,
-//            WindowManager.LayoutParams.FLAG_SECURE
-//        )
+        getWindow().setFlags(
+            WindowManager.LayoutParams.FLAG_SECURE,
+            WindowManager.LayoutParams.FLAG_SECURE
+        )
 
         val tournamentId = intent.getIntExtra("TOURNAMENT_ID", -1)
         val tournamentName = intent.getStringExtra("TOURNAMENT_NAME") ?: "Tournament"

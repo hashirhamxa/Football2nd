@@ -18,7 +18,8 @@ data class AppEntity(
     val newPackageName: String?,
     val licenseKey: String?,
     val productId: String?,
-    val socialMediaLinks: String? // Store as JSON string
+    val socialMediaLinks: String?, // Store as JSON string
+    val adsTimeCountDown: Int?
 )
 
 @Entity(tableName = "ads")
