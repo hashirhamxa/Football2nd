@@ -1,4 +1,4 @@
-# Football Arena
+# Live Cricket
 
 A live football scores and results Android application, built with Java, Retrofit, Room, and Glide.
 

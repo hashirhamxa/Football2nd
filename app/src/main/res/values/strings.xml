@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">Football Arena</string>
+    <string name="app_name" translatable="false">Live Cricket</string>
 
     <!-- Navigation Tabs -->
     <string name="menu_live" translatable="false">Live</string>

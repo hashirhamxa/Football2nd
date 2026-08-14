@@ -26,8 +26,8 @@ android {
         applicationId = "livefootball.footballstreamning.fifaworldcup"
         minSdk = 24
         targetSdk = 36
-        versionCode = 2
-        versionName = "1.2"
+        versionCode = 4
+        versionName = "1.4"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
@@ -49,7 +49,6 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-            // Note: Add your signingConfig here for Play Store releases
         }
     }
     compileOptions {
@@ -127,6 +126,11 @@ dependencies {
     implementation(libs.firebase.perf)
 
 
+    implementation(files("../newjustplayer/libs/lib-ui-release.aar"))
+    implementation(files("../newjustplayer/libs/lib-exoplayer-release.aar"))
+    implementation(files("../newjustplayer/libs/lib-extractor-release.aar"))
+    implementation(files("../newjustplayer/libs/lib-decoder-av1-release.aar"))
+    implementation(files("../newjustplayer/libs/lib-decoder-ffmpeg-release.aar"))
     implementation(files(*fileTree("libs").matching { include("*.jar") }.files.toTypedArray()))
     implementation(project(":newjustplayer"))
 }

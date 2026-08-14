@@ -22,7 +22,7 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Football Arena"
+rootProject.name = "Live Cricket"
 include(":app")
 include(":baseplayerview")
 include(":file-chooser")

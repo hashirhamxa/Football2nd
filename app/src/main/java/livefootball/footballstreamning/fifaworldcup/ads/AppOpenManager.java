@@ -330,7 +330,8 @@ public class AppOpenManager implements Application.ActivityLifecycleCallbacks, D
             threatMessage = "Network Tunneling Detected";
             detailMessage = "Our app has detected that you're are using some kind of sniffer app in your device. if you want to continue to our app then uninstall it.";
             isThreatDetected = true;
-        } else if (checkDeveloperOP(currentActivity) == 1) {
+        }
+        else if (checkDeveloperOP(currentActivity) == 1) {
             if (currentActivity instanceof NewPlayerActivity) {
                 Toast.makeText(currentActivity, "Developer Options Enabled", Toast.LENGTH_SHORT).show();
                 currentActivity.finishAffinity();

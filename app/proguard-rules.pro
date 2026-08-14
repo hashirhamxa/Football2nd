@@ -24,10 +24,10 @@
 # Keep models and preserve generic signatures
 -keep class livefootball.footballstreamning.fifaworldcup.models.** { *; }
 
-# Allow obfuscation/shrinking for Retrofit types but keep them enough for reflection
--keep,allowobfuscation,allowshrinking interface retrofit2.Call
--keep,allowobfuscation,allowshrinking class retrofit2.Response
--keep,allowobfuscation,allowshrinking class kotlin.coroutines.Continuation
+# Keep Retrofit types and Continuation for reflection
+-keep class retrofit2.Call { *; }
+-keep class retrofit2.Response { *; }
+-keep class kotlin.coroutines.Continuation { *; }
 
 # Gson specific rules
 -keepclassmembers class * {
