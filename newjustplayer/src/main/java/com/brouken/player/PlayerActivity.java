@@ -387,12 +387,14 @@ public class PlayerActivity extends Activity {
         ImageButton backImageButton = customPlayerView.findViewById(R.id.custom_player_img_bck);
         videoTitleTxt = customPlayerView.findViewById(R.id.custom_player_tittle);
 
-        backImageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                PlayerActivity.this.onBackPressed();
-            }
-        });
+        if (backImageButton != null) {
+            backImageButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    PlayerActivity.this.onBackPressed();
+                }
+            });
+        }
 
         exoPlayPauseBtn = findViewById(R.id.exo_play_pause);
         loadingProgressBar = findViewById(R.id.loading);
@@ -1477,12 +1479,14 @@ public class PlayerActivity extends Activity {
 //            }
 //            titleView.setVisibility(View.VISIBLE);
 
-            if (videoTitleForVideo != null) {
-                videoTitleTxt.setText(videoTitleForVideo);
-            } else {
-                videoTitleTxt.setText(Utility.getFileName(this, spHandler.mediaUri));
+            if (videoTitleTxt != null) {
+                if (videoTitleForVideo != null) {
+                    videoTitleTxt.setText(videoTitleForVideo);
+                } else {
+                    videoTitleTxt.setText(Utility.getFileName(this, spHandler.mediaUri));
+                }
+                videoTitleTxt.setVisibility(View.VISIBLE);
             }
-            videoTitleTxt.setVisibility(View.VISIBLE);
 
 
             updateButtons(true);
@@ -1588,7 +1592,9 @@ public class PlayerActivity extends Activity {
             exoPlayer = null;
         }
 //        titleView.setVisibility(View.GONE);
-        videoTitleTxt.setVisibility(View.GONE);
+        if (videoTitleTxt != null) {
+            videoTitleTxt.setVisibility(View.GONE);
+        }
         updateButtons(false);
     }
 
