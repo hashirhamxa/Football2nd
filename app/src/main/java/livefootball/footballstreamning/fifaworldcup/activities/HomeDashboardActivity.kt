@@ -14,7 +14,11 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.viewpager2.widget.ViewPager2
 import com.facebook.shimmer.ShimmerFrameLayout
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.android.gms.tasks.Task
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.FirebaseApp
+import com.google.firebase.messaging.FirebaseMessaging
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.combine
@@ -25,7 +29,9 @@ import livefootball.footballstreamning.fifaworldcup.ads.AdsHelper
 import livefootball.footballstreamning.fifaworldcup.network.AppRepository
 import livefootball.footballstreamning.fifaworldcup.utilities.DialogManager
 import livefootball.footballstreamning.fifaworldcup.viewmodels.HomeDashboardViewModel
+import java.lang.Void
 import javax.inject.Inject
+import kotlin.String
 
 @AndroidEntryPoint
 class HomeDashboardActivity : AppCompatActivity() {
@@ -60,6 +66,7 @@ class HomeDashboardActivity : AppCompatActivity() {
         setupBottomNavigation()
         observeViewModel()
         loadAds()
+        settingFirebaseMessage()
     }
 
     private fun loadAds() {
@@ -272,4 +279,39 @@ class HomeDashboardActivity : AppCompatActivity() {
             }
         }
     }
+
+    private fun settingFirebaseMessage() {
+        try {
+            // Initialize Firebase App
+            if (FirebaseApp.getApps(this@HomeDashboardActivity).isEmpty()) {
+                FirebaseApp.initializeApp(this@HomeDashboardActivity)
+            }
+            // Subscribe to topic "all"
+            val firebaseMessaging = FirebaseMessaging.getInstance()
+            firebaseMessaging.subscribeToTopic("all")
+                .addOnCompleteListener(OnCompleteListener { task: Task<Void?>? -> })
+
+            // Get FCM registration token
+            firebaseMessaging.getToken()
+                .addOnCompleteListener(OnCompleteListener { task: Task<String?>? ->
+                    if (task!!.isSuccessful()) {
+                        // Get new FCM registration token
+                        val token = task.getResult()
+                        if (token != null) {
+                            // Log or use the token
+                            // Log.d("FCM", "Token: " + token);
+                        }
+                    }
+                })
+        } catch (e: NullPointerException) {
+            // Log the exception or handle it
+            e.printStackTrace()
+            // You can also show a toast or error message here if needed
+            // Toast.makeText(MainActivity.this, "Error in Firebase setup: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+        } catch (e: Exception) {
+            // Handle any other exceptions
+            e.printStackTrace()
+        }
+    }
+
 }
