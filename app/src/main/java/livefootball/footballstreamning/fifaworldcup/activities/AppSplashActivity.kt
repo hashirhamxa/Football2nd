@@ -38,6 +38,7 @@ class AppSplashActivity : AppCompatActivity() {
     lateinit var repository: AppRepository
 
     private var configRetryCount = 0
+    private var isFlowStarted = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,9 +59,17 @@ class AppSplashActivity : AppCompatActivity() {
         setContentView(R.layout.activity_splash)
 
         loadSplashBackground()
+    }
 
-        lifecycleScope.launch {
-            handleSplashFlow()
+    override fun onResume() {
+        super.onResume()
+        if (!isFlowStarted) {
+            if (!AppOpenManager.checkSniffer(this)) {
+                isFlowStarted = true
+                lifecycleScope.launch {
+                    handleSplashFlow()
+                }
+            }
         }
     }
 
@@ -91,8 +100,11 @@ class AppSplashActivity : AppCompatActivity() {
             return
         }
 
-        if (AppOpenManager.checkSniffer(this)) return
-
+        if (AppOpenManager.checkSniffer(this)) {
+            isFlowStarted = false
+            return
+        }
+        
         fetchConfigAndProceed()
     }
 

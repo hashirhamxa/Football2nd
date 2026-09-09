@@ -352,18 +352,16 @@ public class AppOpenManager implements Application.ActivityLifecycleCallbacks, D
         if (isThreatDetected) {
             String finalThreatMessage = threatMessage;
             String positiveBtn = "Exit";
-            if (finalThreatMessage.contains("Developer Options Enabled")) {
+            if (finalThreatMessage.contains("Developer Options Enabled") || finalThreatMessage.contains("Wireless Debugging Enabled")) {
                 positiveBtn = "Disable";
             }
             Utils.showCustomDialog(currentActivity, threatMessage, detailMessage, positiveBtn, "Cancel", false, false, null,
                     new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            if (finalThreatMessage.contains("Developer Options Enabled")) {
+                            if (finalThreatMessage.contains("Developer Options Enabled") || finalThreatMessage.contains("Wireless Debugging Enabled")) {
                                 Intent intent = new Intent(Settings.ACTION_APPLICATION_DEVELOPMENT_SETTINGS);
-                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                 currentActivity.startActivity(intent);
-                                System.exit(0);
                             } else {
                                 currentActivity.finishAffinity();
                             }
