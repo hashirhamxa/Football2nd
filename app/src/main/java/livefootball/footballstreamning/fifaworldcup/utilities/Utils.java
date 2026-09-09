@@ -155,4 +155,33 @@ public class Utils {
         view.startAnimation(pulse);
     }
 
+
+    /**
+     * Continuous pulse and scale animation for social icons
+     */
+    public static void animateSocialIcon(View view) {
+        if (view == null) return;
+
+        android.view.animation.AnimationSet animationSet = new android.view.animation.AnimationSet(true);
+
+        android.view.animation.ScaleAnimation scale = new android.view.animation.ScaleAnimation(
+                1.0f, 1.15f, 1.0f, 1.15f,
+                Animation.RELATIVE_TO_SELF, 0.5f,
+                Animation.RELATIVE_TO_SELF, 0.5f
+        );
+        scale.setDuration(1000);
+        scale.setRepeatMode(Animation.REVERSE);
+        scale.setRepeatCount(Animation.INFINITE);
+
+        AlphaAnimation alpha = new AlphaAnimation(1.0f, 0.7f);
+        alpha.setDuration(1000);
+        alpha.setRepeatMode(Animation.REVERSE);
+        alpha.setRepeatCount(Animation.INFINITE);
+
+        animationSet.addAnimation(scale);
+        animationSet.addAnimation(alpha);
+        view.startAnimation(animationSet);
+    }
+
+
 }

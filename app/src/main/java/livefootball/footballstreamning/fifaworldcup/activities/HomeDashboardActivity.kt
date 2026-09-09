@@ -1,5 +1,6 @@
 package livefootball.footballstreamning.fifaworldcup.activities
 
+import android.content.Intent
 import android.os.Build
 import android.content.pm.PackageManager
 import androidx.activity.result.contract.ActivityResultContracts
@@ -9,6 +10,9 @@ import android.view.WindowManager
 import android.widget.ProgressBar
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.updatePadding
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
@@ -28,6 +32,7 @@ import livefootball.footballstreamning.fifaworldcup.adapters.DashboardPagerAdapt
 import livefootball.footballstreamning.fifaworldcup.ads.AdsHelper
 import livefootball.footballstreamning.fifaworldcup.network.AppRepository
 import livefootball.footballstreamning.fifaworldcup.utilities.DialogManager
+import livefootball.footballstreamning.fifaworldcup.utilities.Utils
 import livefootball.footballstreamning.fifaworldcup.viewmodels.HomeDashboardViewModel
 import java.lang.Void
 import javax.inject.Inject
@@ -41,6 +46,8 @@ class HomeDashboardActivity : AppCompatActivity() {
 
     private lateinit var viewPager: ViewPager2
     private lateinit var bottomNavigationView: BottomNavigationView
+    private lateinit var btnWhatsapp: View
+
     private var isUiRevealed = false
 
     private val viewModel: HomeDashboardViewModel by viewModels()
@@ -58,9 +65,28 @@ class HomeDashboardActivity : AppCompatActivity() {
             WindowManager.LayoutParams.FLAG_SECURE,
             WindowManager.LayoutParams.FLAG_SECURE
         )
+        val topPanel = findViewById<View>(R.id.top_panel)
+        val bottomNavCard = findViewById<View>(R.id.card_bottom_navigation)
 
+        // Ensure there's a professional gap from the status bar
+        ViewCompat.setOnApplyWindowInsetsListener(topPanel) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            // Apply status bar height + 12dp extra padding for a professional look
+            val extraPadding = (12 * resources.displayMetrics.density).toInt()
+            v.updatePadding(top = systemBars.top + extraPadding)
+            insets
+        }
+
+        ViewCompat.setOnApplyWindowInsetsListener(bottomNavCard) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            // Reduce the bottom inset impact to prevent too much empty space,
+            // especially on 3-button navigation.
+            v.updatePadding(bottom = systemBars.bottom)
+            insets
+        }
         viewPager = findViewById(R.id.view_pager)
         bottomNavigationView = findViewById(R.id.bottom_navigation)
+        btnWhatsapp = findViewById(R.id.btn_whatsapp)
 
         setupViewPager()
         setupBottomNavigation()
@@ -122,6 +148,11 @@ class HomeDashboardActivity : AppCompatActivity() {
                                 .withEndAction {
                                     shimmerContainer.visibility = View.GONE
                                     checkNotificationPermission()
+                                    // Trigger In-App Review check after UI reveal
+                                    lifecycleScope.launch {
+                                        delay(5000) // Wait 5 seconds after reveal
+                                        ReviewHelper.maybeShowReview(this@MainActivity)
+                                    }
                                 }
 
                             viewPager.alpha = 0f
@@ -151,6 +182,24 @@ class HomeDashboardActivity : AppCompatActivity() {
                                 viewPager.visibility = View.GONE
                                 bottomNavCard.visibility = View.GONE
                             }
+                        }
+                    }
+                }
+
+
+                launch {
+                    viewModel.whatsappLink.collect { link ->
+                        if (!link.isNullOrEmpty()) {
+                            btnWhatsapp.visibility = View.VISIBLE
+                            Utils.animateSocialIcon(btnWhatsapp)
+                            btnWhatsapp.setOnClickListener {
+                                val intent = Intent(Intent.ACTION_VIEW)
+                                intent.data = android.net.Uri.parse(link)
+                                startActivity(intent)
+                            }
+                        } else {
+                            btnWhatsapp.visibility = View.GONE
+                            btnWhatsapp.clearAnimation()
                         }
                     }
                 }

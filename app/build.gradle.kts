@@ -125,6 +125,9 @@ dependencies {
     implementation(libs.firebase.analytics)
     implementation(libs.firebase.perf)
 
+    //in app review
+    implementation(libs.play.review)
+    implementation(libs.play.review.ktx)
 
     implementation(files("../newjustplayer/libs/lib-ui-release.aar"))
     implementation(files("../newjustplayer/libs/lib-exoplayer-release.aar"))

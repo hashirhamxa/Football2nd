@@ -17,6 +17,7 @@ import livefootball.footballstreamning.fifaworldcup.utilities.SplashPreloader
 import javax.inject.Inject
 import android.app.Application
 import livefootball.footballstreamning.fifaworldcup.database.ScoreEntity
+import livefootball.footballstreamning.fifaworldcup.models.SocialMediaLink
 
 @HiltViewModel
 class HomeDashboardViewModel @Inject constructor(
@@ -43,6 +44,8 @@ class HomeDashboardViewModel @Inject constructor(
     val isConfigReady: StateFlow<Boolean> = _isConfigReady
 
     private val _appConfig = MutableStateFlow<AppEntity?>(null)
+    private val _whatsappLink = MutableStateFlow<String?>(null)
+    val whatsappLink: StateFlow<String?> = _whatsappLink
     val appConfig: StateFlow<AppEntity?> = _appConfig
 
     private val _streamingConfig = MutableStateFlow<StreamingEntity?>(null)
@@ -57,6 +60,18 @@ class HomeDashboardViewModel @Inject constructor(
         viewModelScope.launch {
             repository.getAppFlow().collectLatest { app ->
                 app?.let {
+                    // Extract WhatsApp link from social media links JSON
+                    val linksJson = it.socialMediaLinks
+                    if (!linksJson.isNullOrEmpty()) {
+                        try {
+                            val type = object : com.google.gson.reflect.TypeToken<List<SocialMediaLink>>() {}.type
+                            val links: List<SocialMediaLink> = com.google.gson.Gson().fromJson(linksJson, type)
+                            _whatsappLink.value = links.find { link -> link.name?.contains("whatsapp", ignoreCase = true) == true }?.link
+                        } catch (e: Exception) {
+                            e.printStackTrace()
+                        }
+                    }
+
                     repository.getStreamingData(it.id).firstOrNull()?.let { data ->
                         val splashUrl = data.streaming.splashImageLink
                         SplashPreloader(application).updateSplashImage(splashUrl)
