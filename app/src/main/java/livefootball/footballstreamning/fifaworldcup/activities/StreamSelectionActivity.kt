@@ -24,6 +24,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.launch
 import livefootball.footballstreamning.fifaworldcup.R
 import livefootball.footballstreamning.fifaworldcup.adapters.Channel
@@ -126,7 +127,10 @@ class StreamSelectionActivity : AppCompatActivity() {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 launch {
                     if (isHighlightsMode) {
-                        viewModel.highlights.collectLatest { highlights ->
+                        combine(viewModel.highlights, viewModel.streaming) { highlights, streaming ->
+                            Pair(highlights, streaming)
+                        }.collectLatest { (highlights, streaming) ->
+
                             val channels = highlights.map { highlight ->
                                 Channel(
                                     name = highlight.linkName ?: "Highlight",
@@ -150,11 +154,27 @@ class StreamSelectionActivity : AppCompatActivity() {
                                         eventId = eventId
                                     )
                                 )
+                            }.toMutableList()
+
+                            if (streaming != null && !streaming.newAppOutsideUrl.isNullOrEmpty()) {
+                                val promoChannel = Channel(
+                                    name = streaming.outsideUrlTitle ?: "New App Available",
+                                    quality = "",
+                                    isPromotion = true,
+                                    promotionUrl = streaming.newAppOutsideUrl,
+                                    promotionTitle = streaming.outsideUrlTitle,
+                                    promotionDescription = streaming.outsideUrlDescription,
+                                    promotionImageUrl = streaming.outsideUrlImageUrl
+                                )
+                                val middleIndex = if (channels.isEmpty()) 0 else maxOf(1, channels.size / 2)
+                                channels.add(middleIndex, promoChannel)
                             }
                             updateAdapter(rvChannels, channels, matchTitle)
                         }
                     } else {
-                        viewModel.links.collectLatest { links ->
+                        combine(viewModel.links, viewModel.streaming) { links, streaming ->
+                            Pair(links, streaming)
+                        }.collectLatest { (links, streaming) ->
                             val channels = links.map { link ->
                                 Channel(
                                     name = link.linkName ?: "Link",
@@ -163,6 +183,20 @@ class StreamSelectionActivity : AppCompatActivity() {
                                     isHighlight = false,
                                     thumbnailLink = null
                                 )
+                            }.toMutableList()
+
+                            if (streaming != null && !streaming.newAppOutsideUrl.isNullOrEmpty()) {
+                                val promoChannel = Channel(
+                                    name = streaming.outsideUrlTitle ?: "New App Available",
+                                    quality = "",
+                                    isPromotion = true,
+                                    promotionUrl = streaming.newAppOutsideUrl,
+                                    promotionTitle = streaming.outsideUrlTitle,
+                                    promotionDescription = streaming.outsideUrlDescription,
+                                    promotionImageUrl = streaming.outsideUrlImageUrl
+                                )
+                                val middleIndex = if (channels.isEmpty()) 0 else maxOf(1, channels.size / 2)
+                                channels.add(middleIndex, promoChannel)
                             }
                             updateAdapter(rvChannels, channels, matchTitle)
                         }

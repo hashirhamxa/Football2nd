@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<livefootball.footballstreamning.fifaworldcup.utilities.SlantedParallelogramCard
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/Widget.Cricket.CardView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="12dp"
+    android:padding="8dp"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?attr/selectableItemBackground"
+    app:skewAmount="18dp"
+    app:cardCornerRadius="0dp"
+    app:cardStrokeColor="@color/primary"
+    app:cardStrokeWidth="1.5dp"
+    app:cardElevation="2dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:padding="12dp">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/layout_icon"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            app:cardCornerRadius="12dp"
+            android:elevation="0dp"
+            app:cardElevation="0dp"
+            android:background="@drawable/bg_channel_icon"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/img_promo_icon"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:contentDescription="@null"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/ic_launcher" />
+        </androidx.cardview.widget.CardView>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="12dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btn_install"
+            app:layout_constraintStart_toEndOf="@id/layout_icon"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/text_promo_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:fontFamily="@font/archivo_narrow_reg"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                android:ellipsize="end"
+                android:maxLines="1"
+                tools:text="NEW CRICKET APP" />
+
+            <TextView
+                android:id="@+id/text_promo_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:alpha="0.7"
+                android:fontFamily="@font/archivo_narrow_reg"
+                android:textColor="@color/white"
+                android:textSize="11dp"
+                android:ellipsize="end"
+                android:maxLines="2"
+                tools:text="Download our official new app for smooth HD live streaming and real-time updates." />
+
+        </LinearLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_install"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:insetLeft="0dp"
+            android:insetTop="0dp"
+            android:insetRight="0dp"
+            android:insetBottom="0dp"
+            android:background="@drawable/channel_rounded_rect_bck"
+            android:paddingHorizontal="14dp"
+            android:text="INSTALL"
+            android:textColor="@color/black"
+            android:fontFamily="@font/archivo_narrow_reg"
+            android:textSize="13dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearanceOverlay="@style/ShapeAppearance.Cricket.Button.Small" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</livefootball.footballstreamning.fifaworldcup.utilities.SlantedParallelogramCard>

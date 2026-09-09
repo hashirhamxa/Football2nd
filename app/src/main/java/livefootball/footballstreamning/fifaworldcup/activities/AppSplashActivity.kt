@@ -104,7 +104,7 @@ class AppSplashActivity : AppCompatActivity() {
             isFlowStarted = false
             return
         }
-        
+
         fetchConfigAndProceed()
     }
 
