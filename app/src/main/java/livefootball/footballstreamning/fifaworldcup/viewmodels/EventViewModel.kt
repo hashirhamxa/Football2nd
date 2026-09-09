@@ -37,17 +37,19 @@ class EventViewModel @Inject constructor(
     fun loadEvents(tournamentId: Int) {
         viewModelScope.launch {
             repository.getEventsForTournamentFlow(tournamentId).collectLatest { eventList ->
-                // Show events that are visible (includes live and upcoming)
-                _events.value = eventList.filter { it.isVisible != false }
+                // Show events if isLive is true and isVisible is true
+                _events.value = eventList.filter { it.isLive == true && it.isVisible == true }
             }
         }
     }
 
     fun loadHighlightEvents(tournamentId: Int) {
         viewModelScope.launch {
-            repository.getHighlightEventsForTournamentFlow(tournamentId).collectLatest { eventList ->
-                _highlightEvents.value = eventList
-            }
+            repository.getHighlightEventsForTournamentFlow(tournamentId)
+                .collectLatest { eventList ->
+                    // Show highlights if isVisible is true
+                    _highlightEvents.value = eventList.filter { it.isVisible == true }
+                }
         }
     }
 }

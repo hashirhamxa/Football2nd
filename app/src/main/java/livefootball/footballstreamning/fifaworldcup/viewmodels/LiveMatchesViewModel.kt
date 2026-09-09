@@ -146,10 +146,9 @@ class LiveMatchesViewModel @Inject constructor(
         tournaments: List<TournamentWithEvents>,
         isTrending: Boolean
     ): List<HomeDisplayItem> {
-        return tournaments.mapNotNull { tWithE ->
-            // Include anything that is marked visible and NOT exclusively a highlight in Live fragment
-            // We want to show Live events AND upcoming events with countdowns.
-            val liveEvents = tWithE.events.filter { it.isVisible != false }
+        return tournaments.filter { it.tournament.isVisible == true }.mapNotNull { tWithE ->
+            // Include anything that is marked visible AND is live
+            val liveEvents = tWithE.events.filter { it.isVisible == true && it.isLive == true }
 
             if (liveEvents.size == 1) {
                 // Promotion logic: Show event directly

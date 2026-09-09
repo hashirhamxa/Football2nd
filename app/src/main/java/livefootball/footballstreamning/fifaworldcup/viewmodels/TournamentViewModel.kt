@@ -50,7 +50,8 @@ class TournamentViewModel @Inject constructor(
             }
 
             tournamentsFlow.collectLatest { tournaments ->
-                val displayItems = processTournaments(tournaments, isHighlights)
+                val visibleTournaments = tournaments.filter { it.tournament.isVisible == true }
+                val displayItems = processTournaments(visibleTournaments, isHighlights)
                 _items.value = displayItems
             }
         }
@@ -62,11 +63,11 @@ class TournamentViewModel @Inject constructor(
     ): List<HomeDisplayItem> {
         return tournaments.mapNotNull { tWithE ->
             val eventsToUse = if (isHighlights) {
-                // Show highlights
-                tWithE.events.filter { it.isHighlight == true }
+                // Show if explicitly true and visible
+                tWithE.events.filter { it.isHighlight == true && it.isVisible == true }
             } else {
-                // Show in live mode if visible (includes live and upcoming)
-                tWithE.events.filter { it.isVisible != false }
+                // Show in live mode if isLive is true and visible
+                tWithE.events.filter { it.isLive == true && it.isVisible == true }
             }
 
             if (eventsToUse.size == 1) {

@@ -149,9 +149,9 @@ class MatchHighlightsViewModel @Inject constructor(
         tournaments: List<TournamentWithEvents>,
         isTrending: Boolean = false
     ): List<HomeDisplayItem> {
-        return tournaments.mapNotNull { tWithE ->
-            // Only consider events where isHighlight is true
-            val highlightEvents = tWithE.events.filter { it.isHighlight == true }
+        return tournaments.filter { it.tournament.isVisible == true }.mapNotNull { tWithE ->
+            // Crucial: Only consider events where isHighlight is true and isVisible is true
+            val highlightEvents = tWithE.events.filter { it.isHighlight == true && it.isVisible == true }
 
             if (highlightEvents.size == 1) {
                 // Single highlight event: show event directly (skip tournament grouping)
