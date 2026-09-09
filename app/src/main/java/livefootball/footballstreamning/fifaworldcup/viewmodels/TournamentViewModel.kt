@@ -51,6 +51,7 @@ class TournamentViewModel @Inject constructor(
 
             tournamentsFlow.collectLatest { tournaments ->
                 val visibleTournaments = tournaments.filter { it.tournament.isVisible == true }
+                    .sortedBy { it.tournament.sort ?: Int.MAX_VALUE }
                 val displayItems = processTournaments(visibleTournaments, isHighlights)
                 _items.value = displayItems
             }

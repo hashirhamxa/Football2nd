@@ -123,7 +123,8 @@ class AppRepository @Inject constructor(
                                         description = tournament.description,
                                         sportType = tournament.sportType,
                                         excludedAppPackageNames = tournament.excludedAppPackageNames,
-                                        streamingId = streaming.id
+                                        streamingId = streaming.id,
+                                        sort = tournament.sort
                                     )
                                 )
 

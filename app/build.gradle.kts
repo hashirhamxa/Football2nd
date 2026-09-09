@@ -18,7 +18,6 @@ if (localPropertiesFile.exists()) {
 val apiToken = localProperties.getProperty("API_TOKEN") ?: "YOUR_API_TOKEN_HERE"
 
 android {
-    //livecricket.livecrickettv.cricketstreaming
     namespace = "livefootball.footballstreamning.fifaworldcup"
     compileSdk = 36
 

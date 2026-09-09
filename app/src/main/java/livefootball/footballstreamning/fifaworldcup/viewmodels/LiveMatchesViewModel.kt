@@ -71,7 +71,7 @@ class LiveMatchesViewModel @Inject constructor(
      */
     private fun processData(data: StreamingWithTournaments) {
         val streaming = data.streaming
-        val tournaments = data.tournaments
+        val tournaments = data.tournaments.sortedBy { it.tournament.sort ?: Int.MAX_VALUE }
 
         // Check which sports are currently enabled for live streaming
         val liveCricket = streaming.liveCricket == true

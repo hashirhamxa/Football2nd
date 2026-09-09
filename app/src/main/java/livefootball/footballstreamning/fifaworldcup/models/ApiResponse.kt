@@ -100,6 +100,7 @@ data class Tournament(
     @SerializedName("description") val description: String?,
     @SerializedName("sport_type") val sportType: String?,
     @SerializedName("excluded_app_package_names") val excludedAppPackageNames: String?,
+    @SerializedName("sort") val sort: Int?,
     @SerializedName("events") val events: List<EventWrapper>?
 )
 

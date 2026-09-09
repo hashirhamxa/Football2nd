@@ -80,8 +80,8 @@ data class TournamentEntity(
     val description: String?,
     val sportType: String?,
     val excludedAppPackageNames: String?,
-    val streamingId: Int
-)
+    val streamingId: Int,
+    val sort: Int?)
 
 @Entity(tableName = "events")
 data class EventEntity(
