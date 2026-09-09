@@ -6,6 +6,8 @@
     <color name="shortcut_background">#F5F5F5</color>
 
     <color name="blue">#01339D</color>
+    <color name="progress_color">#00F2FF</color>
+
 
     <color name="ui_controls_background">#98000000</color>
     <color name="exo_bottom_bar_background" tools:keep="@color/exo_bottom_bar_background">@color/ui_controls_background</color>

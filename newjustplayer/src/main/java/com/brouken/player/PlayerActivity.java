@@ -1757,7 +1757,6 @@ public class PlayerActivity extends Activity {
                         }
                     }
 
-                    updateVideoLoading(false);
 
                     if (spHandler.speed <= 0.99f || spHandler.speed >= 1.01f) {
                         exoPlayer.setPlaybackSpeed(spHandler.speed);
@@ -1768,6 +1767,8 @@ public class PlayerActivity extends Activity {
                 }
                 //leo
                 hideSlidingMessage();
+                updateVideoLoading(false);
+
             } else if (state == Player.STATE_ENDED) {
                 playbackFinished = true;
 //                Toast.makeText(PlayerActivity.this, "Video Ended! Retrying...", Toast.LENGTH_SHORT).show();

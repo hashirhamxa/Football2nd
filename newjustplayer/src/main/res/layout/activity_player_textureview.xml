@@ -27,6 +27,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        app:layout_anchor="@id/video_view"
+        app:layout_anchorGravity="center"
         android:visibility="gone" />
 
     <HorizontalScrollView
