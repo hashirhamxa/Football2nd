@@ -90,7 +90,7 @@ class AppSettingsFragment : Fragment() {
         view.findViewById<View>(R.id.btn_share).setOnClickListener { shareApp() }
         view.findViewById<View>(R.id.btn_rate).setOnClickListener { openPlayStore() }
         view.findViewById<View>(R.id.btn_privacy).setOnClickListener { 
-            openUrl("https://thebicodes.com/CricPulse/privacypolicy")
+            openUrl("https://thebicodes.com/footballarena/privacypolicy")
         }
         view.findViewById<View>(R.id.btn_more_apps).setOnClickListener { 
             openDeveloperPage()
