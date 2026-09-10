@@ -100,6 +100,7 @@ class TournamentViewModel @Inject constructor(
                     imageUrl = tWithE.tournament.thumbUrl,
                     isLive = hasLive,
                     isTrending = false,
+                    startTime = if (!isHighlights) tWithE.tournament.startTime else null,
                     originalObject = tWithE.tournament
                 )
             } else null

@@ -32,6 +32,7 @@ import livefootball.footballstreamning.fifaworldcup.adapters.DashboardPagerAdapt
 import livefootball.footballstreamning.fifaworldcup.ads.AdsHelper
 import livefootball.footballstreamning.fifaworldcup.network.AppRepository
 import livefootball.footballstreamning.fifaworldcup.utilities.DialogManager
+import livefootball.footballstreamning.fifaworldcup.utilities.ReviewHelper
 import livefootball.footballstreamning.fifaworldcup.utilities.Utils
 import livefootball.footballstreamning.fifaworldcup.viewmodels.HomeDashboardViewModel
 import java.lang.Void
@@ -151,7 +152,7 @@ class HomeDashboardActivity : AppCompatActivity() {
                                     // Trigger In-App Review check after UI reveal
                                     lifecycleScope.launch {
                                         delay(5000) // Wait 5 seconds after reveal
-                                        ReviewHelper.maybeShowReview(this@MainActivity)
+                                        ReviewHelper.maybeShowReview(this@HomeDashboardActivity)
                                     }
                                 }
 

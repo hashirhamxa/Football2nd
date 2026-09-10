@@ -176,10 +176,11 @@ class LiveMatchesViewModel @Inject constructor(
                     id = tWithE.tournament.id,
                     title = tWithE.tournament.name ?: "",
                     subtitle = tWithE.tournament.sportType,
-                    status = tWithE.tournament.description ?: if (hasLiveEvent) "LIVE" else "UPCOMING",
+                    status = tWithE.tournament.description ?: if (hasLiveEvent) "LIVE" else "${liveEvents.size} MATCHES",
                     imageUrl = tWithE.tournament.thumbUrl,
                     isLive = hasLiveEvent,
                     isTrending = isTrending,
+                    startTime = tWithE.tournament.startTime,
                     originalObject = tWithE.tournament
                 )
             } else null
