@@ -195,14 +195,6 @@
         <include layout="@layout/exo_player_control_rewind_button" />
 
 
-        <ProgressBar
-            android:id="@+id/loading"
-            style="?android:attr/progressBarStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:indeterminateTint="@color/blue"
-            android:visibility="gone" />
-
         <include layout="@layout/exo_player_control_ffwd_button" />
 
         <ImageButton
